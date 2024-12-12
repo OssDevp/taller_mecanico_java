@@ -1,0 +1,109 @@
+-- Crear la base de datos
+CREATE DATABASE tallermecanico;
+
+-- Usar la base de datos
+USE tallermecanico;
+
+-- Crear la tabla Clientes
+CREATE TABLE Clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    telefono VARCHAR(15),
+    correo VARCHAR(100),
+    direccion TEXT
+);
+
+-- Crear la tabla Vehiculos
+CREATE TABLE Vehiculos (
+    id_vehiculo INT AUTO_INCREMENT PRIMARY KEY,
+    placa VARCHAR(10) NOT NULL,
+    marca VARCHAR(50),
+    modelo VARCHAR(50),
+    anio INT,
+    color VARCHAR(30),
+    id_cliente INT,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
+);
+
+-- Crear la tabla Servicios
+CREATE TABLE Servicios (
+    id_servicio INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    costo DECIMAL(10,2)
+);
+
+-- Crear la tabla Cargos
+CREATE TABLE Cargos (
+    id_cargo INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(100) NOT NULL,
+    sueldo DECIMAL(10,2)
+);
+
+-- Crear la tabla Empleados
+CREATE TABLE Empleados (
+    id_empleado INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    id_cargo INT,
+    habilidades TEXT,
+    FOREIGN KEY (id_cargo) REFERENCES Cargos(id_cargo)
+);
+
+-- Crear la tabla Ordenes
+CREATE TABLE Ordenes (
+    id_orden INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_ingreso DATE,
+    fecha_finalizacion DATE,
+    id_cliente INT,
+    id_vehiculo INT,
+    id_empleado INT,
+    id_servicio INT, -- Nueva columna para el ID del servicio
+    estado VARCHAR(30),
+    costo_total DECIMAL(10,2),
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+    FOREIGN KEY (id_vehiculo) REFERENCES Vehiculos(id_vehiculo),
+    FOREIGN KEY (id_empleado) REFERENCES Empleados(id_empleado),
+    FOREIGN KEY (id_servicio) REFERENCES Servicios(id_servicio) -- Nueva clave foránea
+);
+
+-- Crear la tabla Proveedores
+CREATE TABLE Proveedores (
+    id_proveedor INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    telefono VARCHAR(15),
+    correo VARCHAR(100),
+    direccion TEXT
+);
+
+-- Crear la tabla Productos
+CREATE TABLE Productos (
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    precio_unitario DECIMAL(10,2),
+    stock INT,
+    id_proveedor INT,
+    FOREIGN KEY (id_proveedor) REFERENCES Proveedores(id_proveedor)
+);
+
+-- Crear la tabla Facturas
+CREATE TABLE Facturas (
+    id_factura INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_emision DATE,
+    id_cliente INT,
+    id_orden INT,
+    total DECIMAL(10,2),
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+    FOREIGN KEY (id_orden) REFERENCES Ordenes(id_orden)
+);
+
+-- Crear la tabla DetalleFactura
+CREATE TABLE DetalleFactura (
+    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
+    id_factura INT,
+    id_producto INT,
+    cantidad INT,
+    subtotal DECIMAL(10,2),
+    FOREIGN KEY (id_factura) REFERENCES Facturas(id_factura),
+    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
+);
