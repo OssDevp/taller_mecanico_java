@@ -1,0 +1,46 @@
+# Crear un archivo llamado Hibernate.cfg.xml en la carpeta src/main/resources
+# Copiar el contenido de este archivo en el archivo creado y reemplazar los valores de las propiedades
+# {URL} = URL de la base de datos
+# {DRIVER} = Clase del driver de la base de datos
+# {USER} = Usuario de la base de datos
+# {PASSWORD} = Contraseña de la base de datos
+# {DIALECT} = Dialecto de la base de datos
+# Guardar el archivo
+
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!-- Configuración de la conexión -->
+    <property name="hibernate.connection.url">{URL}</property>
+    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.connection.username">{USER}</property>
+    <property name="hibernate.connection.password">{PASSWORD}</property>
+
+    <!-- Configuración del dialecto de Hibernate -->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+    <!-- Configuración de hbm2ddl -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+
+    <!-- Configuración adicional -->
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+
+    <!-- Cargar clases mapeadas -->
+    <mapping class="tallermecanico.entities.ClienteEntity"/>
+    <mapping class="tallermecanico.entities.VehiculoEntity"/>
+    <mapping class="tallermecanico.entities.EmpleadoEntity"/>
+    <mapping class="tallermecanico.entities.CargoEntity"/>
+    <mapping class="tallermecanico.entities.DetalleFacturaEntity"/>
+    <mapping class="tallermecanico.entities.FacturaEntity"/>
+    <mapping class="tallermecanico.entities.OrdenEntity"/>
+    <mapping class="tallermecanico.entities.ProductoEntity"/>
+    <mapping class="tallermecanico.entities.ProveedorEntity"/>
+    <mapping class="tallermecanico.entities.ServicioEntity"/>
+    <!-- Agrega más entidades según sea necesario -->
+  </session-factory>
+</hibernate-configuration>

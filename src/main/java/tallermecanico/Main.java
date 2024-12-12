@@ -17,15 +17,15 @@ public class Main {
         cliente.setCorreo("juanperes@gmail.com");
         cliente.setDireccion("Calle 123, Colonia Ejemplo");
 
-//        ClienteDAO clienteDAO = new ClienteDAO();
-//        clienteDAO.guardar(cliente);
+        ClienteDAO clienteDAO = new ClienteDAO();
+        clienteDAO.guardar(cliente);
 
         CargoEntity cargo = new CargoEntity();
         cargo.setDescripcion("Mecanico");
         cargo.setSueldo(new BigDecimal("1000000.00"));
 
         CargoDAO cargoDAO = new CargoDAO();
-        cargoDAO.guardar(cargo);
+//        cargoDAO.guardar(cargo);
 
     }
 }
