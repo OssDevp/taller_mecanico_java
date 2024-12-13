@@ -3,16 +3,15 @@ package tallermecanico.DAO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import tallermecanico.config.HibernateUtil;
-import tallermecanico.entities.CargoEntity;
+import tallermecanico.entities.ServicioEntity;
 
 import java.util.List;
 
-public class CargoDAO {
-
+public class ServicioDAO {
     // LISTAR TODOS
-    public List<CargoEntity> obtenerTodos() {
+    public List<ServicioEntity> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM CargoEntity ", CargoEntity.class).list();
+            return session.createQuery("FROM ServicioEntity ", ServicioEntity.class).list();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -20,9 +19,9 @@ public class CargoDAO {
     }
 
     // OBTENER POR ID
-    public CargoEntity obtenerPorId(Long id) {
+    public ServicioEntity obtenerPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.get(CargoEntity.class, id);
+            return session.get(ServicioEntity.class, id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -30,11 +29,11 @@ public class CargoDAO {
     }
 
     // GUARDAR
-    public void guardar(CargoEntity cargo) {
+    public void guardar(ServicioEntity servicio) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.saveOrUpdate(cargo);
+            session.saveOrUpdate(servicio);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
@@ -47,9 +46,9 @@ public class CargoDAO {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            CargoEntity cargo = session.get(CargoEntity.class, id);
-            if (cargo != null) {
-                session.delete(cargo);
+            ServicioEntity servicio = session.get(ServicioEntity.class, id);
+            if (servicio != null) {
+                session.delete(servicio);
             }
             transaction.commit();
         } catch (Exception e) {
@@ -59,11 +58,11 @@ public class CargoDAO {
     }
 
     // ACTUALIZAR
-    public void actualizar(CargoEntity cargo) {
+    public void actualizar(ServicioEntity servicio) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(cargo);
+            session.update(servicio);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
