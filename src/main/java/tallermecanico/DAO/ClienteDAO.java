@@ -29,6 +29,19 @@ public class ClienteDAO {
         }
     }
 
+    // OBTENER POR CEDULA
+    public ClienteEntity obtenerPorCedula(String cedulaIdentidad) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM ClienteEntity c WHERE c.cedula = :cedulaIdentidad";
+            return session.createQuery(hql, ClienteEntity.class)
+                    .setParameter("cedulaIdentidad", cedulaIdentidad)
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // Metodo para guardar un cliente
     public void guardar(ClienteEntity cliente) {
         Transaction transaction = null;
