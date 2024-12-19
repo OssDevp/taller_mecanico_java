@@ -10,7 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "Clientes")
+@Table(name = "clientes")
 public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,9 @@ public class ClienteEntity {
     @Lob
     @Column(name = "direccion")
     private String direccion;
+
+    @Column(name = "cedula", nullable = false, length = 45)
+    private String cedula;
 
     @OneToMany(mappedBy = "idCliente")
     private Set<FacturaEntity> facturas = new LinkedHashSet<>();
