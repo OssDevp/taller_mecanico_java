@@ -102,7 +102,7 @@ public class ClienteView extends javax.swing.JFrame {
         btnNuevo = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nombre y Apellido:");
         jLabel1.setToolTipText("");
@@ -118,6 +118,11 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel6.setText("Cliente");
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
 
@@ -158,16 +163,12 @@ public class ClienteView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDireccion)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtRUC)
-                                    .addComponent(txtTelefono))
-                                .addGap(158, 158, 158))))))
+                            .addComponent(txtDireccion)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtRUC)
+                            .addComponent(txtTelefono)
+                            .addComponent(txtNombre))
+                        .addGap(158, 158, 158))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
@@ -222,6 +223,12 @@ public class ClienteView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    MenuView volver = new MenuView();
+    volver.setVisible(true);
+    // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverActionPerformed
 
 
 

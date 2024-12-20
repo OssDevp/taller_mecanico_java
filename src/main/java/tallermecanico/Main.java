@@ -7,17 +7,13 @@ import tallermecanico.controller.ClienteController;
 import tallermecanico.entities.ClienteEntity;
 import tallermecanico.entities.VehiculoEntity;
 import tallermecanico.view.ClienteView;
+import tallermecanico.view.MenuView;
 
 public class Main {
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ClienteView vista = new ClienteView();
-                ClienteDAO clienteDAO = new ClienteDAO();
-                ClienteController controlador = new ClienteController(vista, clienteDAO);
-                vista.setVisible(true);
-            }
-        });
+        MenuView menu = new MenuView();
+        menu.setVisible(true);
+       
 //        ClienteEntity cliente = new ClienteEntity();
 //        cliente.setNombre("fabrizio");
 //        cliente.setTelefono("1234567890");
