@@ -11,22 +11,10 @@ public class ClienteController {
         this.vista = vista;
         this.clienteDAO = clienteDAO;
 
-        this.vista.addBtnGuardarListener(e -> guardar());
-        this.vista.addBtnEliminarListener(e -> borrar());
-        this.vista.addBtnBuscarListener(e -> buscarPorCedula());
-        this.vista.addBtnNuevoListener(e -> nuevo());
+
     }
 
     public void guardar() {
-        String nombre = vista.getNombre();
-        String cedula = vista.getCedula();
-        String telefono = vista.getTelefono();
-        String correo = vista.getCorreo();
-        String direccion = vista.getDireccion();
-
-        if (nombre.isEmpty() || cedula.isEmpty() || telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty()) {
-            vista.mostrarMensajeError("Completar todos los campos");
-        }
     }
 
     public void borrar() {
@@ -38,7 +26,6 @@ public class ClienteController {
     }
 
     public void nuevo() {
-        vista.limpiarCampos();
     }
 
 

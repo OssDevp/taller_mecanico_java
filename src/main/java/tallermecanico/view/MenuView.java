@@ -1,22 +1,18 @@
-
 package tallermecanico.view;
 
 import tallermecanico.view.components.ImageSize;
-
-
-
 
 public class MenuView extends javax.swing.JFrame {
 
     private ImageSize image = new ImageSize();
     private ClienteView clienteView = new ClienteView();
-    
+    private OrdenView ordenView = new OrdenView();
+
     public MenuView() {
         initComponents();
         setResizable(false);
         this.image.setSize(this.lblImage, "src/main/resources/tallermecanico.png");
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -32,8 +28,16 @@ public class MenuView extends javax.swing.JFrame {
         lblImage = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMnServicios = new javax.swing.JMenuItem();
+        jMnCliente = new javax.swing.JMenuItem();
+        jMnVehiculo = new javax.swing.JMenuItem();
+        jMnFactura = new javax.swing.JMenu();
+        jMnFacturas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMnEmpleado = new javax.swing.JMenuItem();
+        jMnCargo = new javax.swing.JMenuItem();
+        jMnProducto = new javax.swing.JMenuItem();
+        jMnProveedor = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -75,6 +79,11 @@ public class MenuView extends javax.swing.JFrame {
         btnRegistrarOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarOrden.setFocusCycleRoot(true);
         btnRegistrarOrden.setFocusPainted(false);
+        btnRegistrarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarOrdenActionPerformed(evt);
+            }
+        });
         jPanelPrincipal.add(btnRegistrarOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 170, 70));
 
         btnEstadoOrden.setBackground(new java.awt.Color(140, 161, 201));
@@ -93,13 +102,88 @@ public class MenuView extends javax.swing.JFrame {
         lblImage.setText("imagen");
         jPanelContainer.add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 410, 380));
 
-        jMenu1.setText("File");
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jMenu1.setText("Atencion");
+
+        jMnServicios.setText("Servicios");
+        jMnServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnServiciosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMnServicios);
+
+        jMnCliente.setText("Cliente");
+        jMnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnClienteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMnCliente);
+
+        jMnVehiculo.setText("Vehiculo");
+        jMnVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnVehiculoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMnVehiculo);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMnFactura.setText("Facturacion");
 
-        jMenu4.setText("jMenu4");
+        jMnFacturas.setText("Facturas");
+        jMnFacturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnFacturasActionPerformed(evt);
+            }
+        });
+        jMnFactura.add(jMnFacturas);
+
+        jMenuBar1.add(jMnFactura);
+
+        jMenu4.setText("Admin");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
+
+        jMnEmpleado.setText("Empleado");
+        jMnEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMnEmpleado);
+
+        jMnCargo.setText("Cargo");
+        jMnCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnCargoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMnCargo);
+
+        jMnProducto.setText("Producto");
+        jMnProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnProductoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMnProducto);
+
+        jMnProveedor.setText("Proveedor");
+        jMnProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnProveedorActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMnProveedor);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -121,17 +205,72 @@ public class MenuView extends javax.swing.JFrame {
     private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
         clienteView.setVisible(true);
     }//GEN-LAST:event_btnRegistrarClienteActionPerformed
-    
+
+    private void btnRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarOrdenActionPerformed
+        ordenView.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarOrdenActionPerformed
+
+    private void jMnCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnCargoActionPerformed
+        CargoView cargoView = new CargoView();
+        cargoView.setVisible(true);
+    }//GEN-LAST:event_jMnCargoActionPerformed
+
+    private void jMnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnServiciosActionPerformed
+        ServicioView servicioView = new ServicioView();
+        servicioView.setVisible(true);
+    }//GEN-LAST:event_jMnServiciosActionPerformed
+
+    private void jMnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnClienteActionPerformed
+        clienteView.setVisible(true);
+    }//GEN-LAST:event_jMnClienteActionPerformed
+
+    private void jMnVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnVehiculoActionPerformed
+        VehiculoView vehiculoView = new VehiculoView();
+        vehiculoView.setVisible(true);
+    }//GEN-LAST:event_jMnVehiculoActionPerformed
+
+    private void jMnFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnFacturasActionPerformed
+        FacturaView facturaView = new FacturaView();
+        facturaView.setVisible(true);
+    }//GEN-LAST:event_jMnFacturasActionPerformed
+
+    private void jMnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnEmpleadoActionPerformed
+        EmpleadoView empleadoView = new EmpleadoView();
+        empleadoView.setVisible(true);
+    }//GEN-LAST:event_jMnEmpleadoActionPerformed
+
+    private void jMnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProductoActionPerformed
+        ProductoView productoView = new ProductoView();
+        productoView.setVisible(true);
+                
+    }//GEN-LAST:event_jMnProductoActionPerformed
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProveedorActionPerformed
+        ProveedorView proveedorView = new ProveedorView();
+        proveedorView.setVisible(true);
+    }//GEN-LAST:event_jMnProveedorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstadoOrden;
     private javax.swing.JButton btnRegistrarCliente;
     private javax.swing.JButton btnRegistrarOrden;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMnCargo;
+    private javax.swing.JMenuItem jMnCliente;
+    private javax.swing.JMenuItem jMnEmpleado;
+    private javax.swing.JMenu jMnFactura;
+    private javax.swing.JMenuItem jMnFacturas;
+    private javax.swing.JMenuItem jMnProducto;
+    private javax.swing.JMenuItem jMnProveedor;
+    private javax.swing.JMenuItem jMnServicios;
+    private javax.swing.JMenuItem jMnVehiculo;
     private javax.swing.JPanel jPanelContainer;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JLabel lblImage;
