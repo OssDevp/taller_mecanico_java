@@ -49,7 +49,7 @@ public class VehiculoView extends javax.swing.JFrame {
         tbnBuscar = new javax.swing.JButton();
         btnIrCliente = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel6.setText("Vehiculo");
 
@@ -68,6 +68,11 @@ public class VehiculoView extends javax.swing.JFrame {
         jLabel8.setText("Id_Cliente");
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
 
@@ -186,6 +191,11 @@ public class VehiculoView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+MenuView volver = new MenuView();
+    volver.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
