@@ -10,7 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "clientes")
+@Table(name = "Clientes")
 public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class ClienteEntity {
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "telefono", length = 15)
+    @Column(name = "telefono", length = 25)
     private String telefono;
 
     @Column(name = "correo", length = 100)

@@ -3,17 +3,22 @@ package tallermecanico.view;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import tallermecanico.controller.ClienteController;
 import tallermecanico.entities.ClienteEntity;
 import tallermecanico.view.components.ImageSize;
 
 
 public class ClienteView extends javax.swing.JFrame {
 
+    private ClienteController clienteController;
     private ImageSize image = new ImageSize();
     private ClienteEntity clienteEntity;
     
     public ClienteView() {
         initComponents();
+        clienteController = new ClienteController();
+        setTitle("Cliente");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -161,19 +166,27 @@ public class ClienteView extends javax.swing.JFrame {
         
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String cedula;
-        
+
         try {
             cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Buscar Cliente", JOptionPane.QUESTION_MESSAGE);
-            // Registrar todo en Cliente:
-            // clienteEntity = new Cliente(); <- cargar cliente
+            if (cedula.isBlank()) {
+                JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                clienteEntity = clienteController.buscarPorCedula(cedula);
+                txtNombre.setText(clienteEntity.getNombre());
+                txtTelefono.setText(clienteEntity.getTelefono());
+                txtDireccion.setText(clienteEntity.getDireccion());
+                txtCorreo.setText(clienteEntity.getCorreo());
+                txtRUC.setText(clienteEntity.getCedula());
+            }
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.limpiarCampos();
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String cedula = txtRUC.getText();
@@ -181,14 +194,22 @@ public class ClienteView extends javax.swing.JFrame {
         String telefono = txtTelefono.getText();
         String direccion = txtDireccion.getText();
         String correo = txtCorreo.getText();
-        
+
+
+
         if(cedula.isBlank()|| nombreApellido.isBlank()|| telefono.isBlank() || direccion.isBlank() || correo.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);       
+            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Dato Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
-            this.limpiarCampos();           
-        }     
-    }//GEN-LAST:event_btnGuardarActionPerformed
+            try {
+                var string = clienteController.guardar(nombreApellido, telefono, direccion, correo, cedula);
+                JOptionPane.showMessageDialog(null, string, "Registro", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
 
     private void limpiarCampos() {
         txtNombre.setText("");

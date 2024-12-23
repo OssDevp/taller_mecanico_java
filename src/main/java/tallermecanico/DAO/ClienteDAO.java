@@ -30,11 +30,11 @@ public class ClienteDAO {
     }
 
     // OBTENER POR CEDULA
-    public ClienteEntity obtenerPorCedula(String cedulaIdentidad) {
+    public ClienteEntity obtenerPorCedula(String cedula) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM ClienteEntity c WHERE c.cedula = :cedulaIdentidad";
+            String hql = "FROM ClienteEntity c WHERE c.cedula = :cedula";
             return session.createQuery(hql, ClienteEntity.class)
-                    .setParameter("cedulaIdentidad", cedulaIdentidad)
+                    .setParameter("cedula", cedula)
                     .uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();

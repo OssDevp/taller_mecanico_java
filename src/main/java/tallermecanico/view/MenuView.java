@@ -213,45 +213,45 @@ public class MenuView extends javax.swing.JFrame {
     private void jMnCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnCargoActionPerformed
         CargoView cargoView = new CargoView();
         cargoView.setVisible(true);
-    }//GEN-LAST:event_jMnCargoActionPerformed
+    }
 
     private void jMnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnServiciosActionPerformed
         ServicioView servicioView = new ServicioView();
         servicioView.setVisible(true);
-    }//GEN-LAST:event_jMnServiciosActionPerformed
+    }
 
     private void jMnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnClienteActionPerformed
         clienteView.setVisible(true);
-    }//GEN-LAST:event_jMnClienteActionPerformed
+    }
 
     private void jMnVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnVehiculoActionPerformed
         VehiculoView vehiculoView = new VehiculoView();
         vehiculoView.setVisible(true);
-    }//GEN-LAST:event_jMnVehiculoActionPerformed
+    }
 
     private void jMnFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnFacturasActionPerformed
         FacturaView facturaView = new FacturaView();
         facturaView.setVisible(true);
-    }//GEN-LAST:event_jMnFacturasActionPerformed
+    }
 
     private void jMnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnEmpleadoActionPerformed
         EmpleadoView empleadoView = new EmpleadoView();
         empleadoView.setVisible(true);
-    }//GEN-LAST:event_jMnEmpleadoActionPerformed
+    }
 
     private void jMnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProductoActionPerformed
         ProductoView productoView = new ProductoView();
         productoView.setVisible(true);
                 
-    }//GEN-LAST:event_jMnProductoActionPerformed
+    }
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
-    }//GEN-LAST:event_jMenu4ActionPerformed
+    }
 
     private void jMnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProveedorActionPerformed
         ProveedorView proveedorView = new ProveedorView();
         proveedorView.setVisible(true);
-    }//GEN-LAST:event_jMnProveedorActionPerformed
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
