@@ -3,6 +3,7 @@ package tallermecanico.view;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
 import tallermecanico.entities.ClienteEntity;
 import tallermecanico.view.components.ImageSize;
 
@@ -100,6 +101,11 @@ public class ClienteView extends javax.swing.JFrame {
         btnBorrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBorrar.setFocusCycleRoot(true);
         btnBorrar.setFocusPainted(false);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 80, 30));
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
@@ -111,6 +117,11 @@ public class ClienteView extends javax.swing.JFrame {
         btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevo.setFocusCycleRoot(true);
         btnNuevo.setFocusPainted(false);
+        btnNuevo.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                
+            }
+        });
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
@@ -189,6 +200,10 @@ public class ClienteView extends javax.swing.JFrame {
             this.limpiarCampos();           
         }     
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void limpiarCampos() {
         txtNombre.setText("");

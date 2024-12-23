@@ -2,6 +2,7 @@
 package tallermecanico.view;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import tallermecanico.view.components.ImageSize;
 
 public class EmpleadoView extends javax.swing.JFrame {
@@ -100,6 +101,11 @@ public class EmpleadoView extends javax.swing.JFrame {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setFocusPainted(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 80, 30));
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
@@ -116,6 +122,11 @@ public class EmpleadoView extends javax.swing.JFrame {
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
         btnNuevo.setFocusPainted(false);
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 80, 30));
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
@@ -157,6 +168,41 @@ public class EmpleadoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        this.limpiarCampos();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String idEmpleado = txtIdEmpleado.getText();
+        String nombre = txtNombre.getText();
+        String cargo = txtNombre.getText();
+        String habilidades = txtHabilidades.getText();
+        
+        String estado = ""; 
+    if (rbActivo.isSelected()) {
+        estado = "Activo";
+    } else if (rbInactivo.isSelected()) {
+        estado = "Inactivo";
+    }
+    
+    if (idEmpleado.isBlank() || nombre.isBlank() || cargo.isBlank() || habilidades.isBlank() || (!rbActivo.isSelected() && !rbInactivo.isSelected())) {
+    JOptionPane.showMessageDialog(null, "Los campos no deben estar vacíos", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+    JOptionPane.showMessageDialog(null, "Dato Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
+    this.limpiarCampos();
+    }
+    
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void limpiarCampos() {
+        txtNombre.setText("");
+        txtIdEmpleado.setText("");
+        txtCargo.setText("");
+        txtHabilidades.setText("");
+        rbActivo.setSelected(false);
+        rbInactivo.setSelected(false);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;

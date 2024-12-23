@@ -92,6 +92,11 @@ public class ProductoView extends javax.swing.JFrame {
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 95, -1));
 
         btnGuardar1.setText("Guardar");
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
 
         jLabel13.setText("Precio Unitario");
@@ -151,6 +156,10 @@ public class ProductoView extends javax.swing.JFrame {
         ProveedorView proveedorView = new ProveedorView();
         proveedorView.setVisible(true);
     }//GEN-LAST:event_btnIrProveedor1ActionPerformed
+
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
