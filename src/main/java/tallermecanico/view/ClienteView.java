@@ -119,6 +119,11 @@ public class ClienteView extends javax.swing.JFrame {
         btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevo.setFocusCycleRoot(true);
         btnNuevo.setFocusPainted(false);
+        btnNuevo.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                
+            }
+        });
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
@@ -236,6 +241,10 @@ public class ClienteView extends javax.swing.JFrame {
             }
         }
     }
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void limpiarCampos() {
         txtNombre.setText("");
