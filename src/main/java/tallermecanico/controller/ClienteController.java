@@ -2,57 +2,53 @@ package tallermecanico.controller;
 
 import tallermecanico.DAO.ClienteDAO;
 import tallermecanico.entities.ClienteEntity;
-import tallermecanico.view.ClienteView;
+
+import java.util.List;
 
 public class ClienteController {
     private ClienteDAO clienteDAO;
-    ClienteEntity cliente;
 
-    public ClienteController() {
+    public ClienteController(){}
 
-    }
-
-    public String guardar(String nombre, String telefono, String direccion, String correo, String cedula) {
+    public void registrarCliente(ClienteEntity cliente) {
         clienteDAO = new ClienteDAO();
-        cliente = new ClienteEntity();
-
-        cliente.setNombre(nombre);
-        cliente.setTelefono(telefono);
-        cliente.setDireccion(direccion);
-        cliente.setCorreo(correo);
-        cliente.setCedula(cedula);
-
-        if (!ExisteCliente(cliente.getCedula())) {
-            throw new IllegalArgumentException("El cliente ya existe");
+        if (clienteDAO.obtenerPorCedula(cliente.getCedula()) != null) {
+            throw new RuntimeException("Ya existe un cliente con la cédula ingresada");
         }
         try {
             clienteDAO.guardar(cliente);
-            return "Cliente guardado";
         } catch (Exception e) {
-            throw new RuntimeException("Error al guardar el cliente");
+            throw new RuntimeException("Error al guardar el cliente", e);
         }
     }
 
-    public void borrar() {
-
-    }
-
-    public ClienteEntity buscarPorCedula(String cedula) {
-        if (!ExisteCliente(cedula)) {
-            throw new IllegalArgumentException("El cliente no existe");
+    public ClienteEntity obtenerClientePorCedula(String cedula) {
+        try {
+            clienteDAO = new ClienteDAO();
+            return clienteDAO.obtenerPorCedula(cedula);
+        } catch (Exception e) {
+            return null;
         }
-        clienteDAO = new ClienteDAO();
-        cliente = clienteDAO.obtenerPorCedula(cedula);
-        return cliente;
     }
 
-    public void nuevo() {
+    public List<ClienteEntity> obtenerTodosLosClientes() {
+        try {
+            clienteDAO = new ClienteDAO();
+            return clienteDAO.obtenerTodos();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public boolean ExisteCliente(String cedula) {
-        clienteDAO = new ClienteDAO();
-        cliente = clienteDAO.obtenerPorCedula(cedula);
-        return cliente != null;
+    public void EliminarCliente(ClienteEntity cliente) {
+        if (clienteDAO.obtenerPorCedula(cliente.getCedula()) == null) {
+            throw new RuntimeException("Ya existe un cliente con la cédula ingresada");
+        }
+        try {
+            clienteDAO = new ClienteDAO();
+            clienteDAO.eliminar(cliente.getId().longValue());
+        } catch (Exception e) {
+            throw new RuntimeException("Error al eliminar el cliente", e);
+        }
     }
-
 }

@@ -42,6 +42,7 @@ public class ClienteDAO {
         }
     }
 
+
     // Metodo para guardar un cliente
     public void guardar(ClienteEntity cliente) {
         Transaction transaction = null;
@@ -50,8 +51,11 @@ public class ClienteDAO {
             session.saveOrUpdate(cliente); // Usamos saveOrUpdate para insertar o actualizar
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
             e.printStackTrace();
+            throw new RuntimeException("Error al guardar el cliente", e);
         }
     }
 
