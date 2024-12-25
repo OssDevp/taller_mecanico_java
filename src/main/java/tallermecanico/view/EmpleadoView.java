@@ -1,20 +1,25 @@
 
 package tallermecanico.view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
+import tallermecanico.controller.EmpleadoController;
+import tallermecanico.entities.EmpleadoEntity;
 import tallermecanico.view.components.ImageSize;
 
 public class EmpleadoView extends javax.swing.JFrame {
 
-
+    EmpleadoController empleadoController;
+    EmpleadoEntity empleadoEntity;
 
     public EmpleadoView() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        empleadoController = new EmpleadoController();
         setResizable(false);
         setLocationRelativeTo(null);
         ImageSize image = new ImageSize();
-        this.image.setSize(lblImage, "src/main/resources/empleado.png");
+        image.setSize(lblImage, "src/main/resources/empleado.png");
     }
 
 
@@ -22,6 +27,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblImage = new javax.swing.JLabel();
@@ -139,6 +145,9 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(rbInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 190, 10));
 
+        buttonGroup.add(rbActivo);
+        buttonGroup.add(rbInactivo);
+
         btnBuscar1.setBackground(new java.awt.Color(26, 41, 74));
         btnBuscar1.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
         btnBuscar1.setText("Buscar");
@@ -168,26 +177,92 @@ public class EmpleadoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    //Nuevo empleado
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {
+        limpiarCampos();
+    }
 
+    //Buscar empleado
+    // FIXME: No se esta buscando por cedula
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
+        String cedula = JOptionPane.showInputDialog(null, "Ingrese la cedula del empleado", "Buscar empleado", JOptionPane.QUESTION_MESSAGE);
+        if (cedula.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar la cedula del empleado", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                empleadoEntity = empleadoController.obtenerEmpleado(cedula);
+                txtIdEmpleado.setText(empleadoEntity.getCedula());
+                txtNombre.setText(empleadoEntity.getNombre());
+//                txtCargo.setText(empleadoEntity.());
+                txtHabilidades.setText(empleadoEntity.getHabilidades());
 
+                JOptionPane.showMessageDialog(null, "Empleado encontrado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    //Borrar empleado
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBorrarActionPerformed
+        String cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
 
+        if (cedula.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el cliente?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirmacion == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            try {
+                empleadoController.eliminarEmpleado(cedula);
+                JOptionPane.showMessageDialog(null, "Cliente Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    //Guardar empleado
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+        String cedula = txtIdEmpleado.getText();
+        String nombre = txtNombre.getText();
+        String cargo = txtCargo.getText();
+        String habilidades = txtHabilidades.getText();
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarActionPerformed
+        if (cedula.isBlank() || nombre.isBlank() || cargo.isBlank() || habilidades.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                empleadoEntity = new EmpleadoEntity();
+                empleadoEntity.setCedula(cedula);
+                empleadoEntity.setNombre(nombre);
+//                empleadoEntity.setCargo(cargo);
+                empleadoEntity.setHabilidades(habilidades);
 
+                empleadoController.registrarEmpleado(empleadoEntity);
+                JOptionPane.showMessageDialog(null, "Empleado guardado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void limpiarCampos() {
+        txtIdEmpleado.setText("");
+        txtNombre.setText("");
+        txtCargo.setText("");
+        txtHabilidades.setText("");
+        rbActivo.setSelected(false);
+        rbInactivo.setSelected(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
@@ -195,6 +270,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
