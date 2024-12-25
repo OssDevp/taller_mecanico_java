@@ -11,8 +11,7 @@ import tallermecanico.view.components.ImageSize;
 
 public class ClienteView extends javax.swing.JFrame {
 
-    private ClienteController clienteController;
-    private ImageSize image = new ImageSize();
+    private final ClienteController clienteController;
     private ClienteEntity clienteEntity;
     
     public ClienteView() {
@@ -22,7 +21,8 @@ public class ClienteView extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
-        this.image.setSize(lblImage, "src/main/resources/cliente.png");
+        ImageSize image = new ImageSize();
+        image.setSize(lblImage, "src/main/resources/cliente.png");
     }
 
     @SuppressWarnings("unchecked")
@@ -169,27 +169,47 @@ public class ClienteView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBorrarActionPerformed
+        String cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-        
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        if (cedula.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el cliente?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirmacion == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            try {
+                clienteController.eliminarCliente(cedula);
+                JOptionPane.showMessageDialog(null, "Cliente Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
         String cedula;
+        cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Buscar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-        try {
-            cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Buscar Cliente", JOptionPane.QUESTION_MESSAGE);
-            if (cedula.isBlank()) {
-                JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+        if (cedula.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            try {
+                clienteEntity = new ClienteEntity();
                 clienteEntity = clienteController.obtenerCliente(cedula);
                 txtNombre.setText(clienteEntity.getNombre());
                 txtTelefono.setText(clienteEntity.getTelefono());
                 txtDireccion.setText(clienteEntity.getDireccion());
                 txtCorreo.setText(clienteEntity.getCorreo());
                 txtRUC.setText(clienteEntity.getCedula());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
 
@@ -203,8 +223,6 @@ public class ClienteView extends javax.swing.JFrame {
         String telefono = txtTelefono.getText();
         String direccion = txtDireccion.getText();
         String correo = txtCorreo.getText();
-
-
 
         if(cedula.isBlank()|| nombreApellido.isBlank()|| telefono.isBlank() || direccion.isBlank() || correo.isBlank()) {
             JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);

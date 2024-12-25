@@ -28,6 +28,18 @@ public class EmpleadoDAO {
         }
     }
 
+    public EmpleadoEntity obtenerPorCedula(String cedula) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM EmpleadoEntity e WHERE e.cedula = :cedula";
+            return session.createQuery(hql, EmpleadoEntity.class)
+                    .setParameter("cedula", cedula)
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // GUARDAR
     public void guardar(EmpleadoEntity empleado) {
         Transaction transaction = null;

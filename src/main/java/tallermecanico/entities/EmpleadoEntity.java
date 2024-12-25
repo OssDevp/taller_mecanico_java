@@ -3,7 +3,6 @@ package tallermecanico.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -30,5 +29,8 @@ public class EmpleadoEntity {
 
     @OneToMany(mappedBy = "idEmpleado")
     private Set<OrdenEntity> ordenes = new LinkedHashSet<>();
+
+    @Column(name = "cedula", nullable = false, length = 45)
+    private String cedula;
 
 }

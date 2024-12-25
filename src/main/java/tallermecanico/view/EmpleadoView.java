@@ -6,13 +6,14 @@ import tallermecanico.view.components.ImageSize;
 
 public class EmpleadoView extends javax.swing.JFrame {
 
-    private ImageSize image = new ImageSize();
-    
+
+
     public EmpleadoView() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
+        ImageSize image = new ImageSize();
         this.image.setSize(lblImage, "src/main/resources/empleado.png");
     }
 
