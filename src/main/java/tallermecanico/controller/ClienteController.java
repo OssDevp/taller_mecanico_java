@@ -2,53 +2,66 @@ package tallermecanico.controller;
 
 import tallermecanico.DAO.ClienteDAO;
 import tallermecanico.entities.ClienteEntity;
+import tallermecanico.view.ClienteView;
 
 import java.util.List;
 
 public class ClienteController {
     private ClienteDAO clienteDAO;
 
-    public ClienteController(){}
+    public ClienteController() {}
 
     public void registrarCliente(ClienteEntity cliente) {
         clienteDAO = new ClienteDAO();
         if (clienteDAO.obtenerPorCedula(cliente.getCedula()) != null) {
-            throw new RuntimeException("Ya existe un cliente con la cédula ingresada");
+            throw new RuntimeException("El cliente ya se encuentra registrado");
         }
         try {
             clienteDAO.guardar(cliente);
         } catch (Exception e) {
-            throw new RuntimeException("Error al guardar el cliente", e);
+            throw new RuntimeException("Error al registrar cliente");
         }
     }
 
-    public ClienteEntity obtenerClientePorCedula(String cedula) {
+    public List<ClienteEntity> obtenerClientes(String cedula) {
+        clienteDAO = new ClienteDAO();
         try {
-            clienteDAO = new ClienteDAO();
-            return clienteDAO.obtenerPorCedula(cedula);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public List<ClienteEntity> obtenerTodosLosClientes() {
-        try {
-            clienteDAO = new ClienteDAO();
             return clienteDAO.obtenerTodos();
         } catch (Exception e) {
-            return null;
+            throw new RuntimeException("Error al obtener clientes");
         }
     }
 
-    public void EliminarCliente(ClienteEntity cliente) {
+    public ClienteEntity obtenerCliente(String cedula) {
+        clienteDAO = new ClienteDAO();
+        ClienteEntity cliente = clienteDAO.obtenerPorCedula(cedula);
+        if (cliente == null) {
+            throw new RuntimeException("El cliente no se encuentra registrado");
+        }
+        return cliente;
+    }
+
+    public void actualizarCliente(ClienteEntity cliente) {
+        clienteDAO = new ClienteDAO();
         if (clienteDAO.obtenerPorCedula(cliente.getCedula()) == null) {
-            throw new RuntimeException("Ya existe un cliente con la cédula ingresada");
+            throw new RuntimeException("El cliente no se encuentra registrado");
         }
         try {
-            clienteDAO = new ClienteDAO();
-            clienteDAO.eliminar(cliente.getId().longValue());
+            clienteDAO.actualizar(cliente);
         } catch (Exception e) {
-            throw new RuntimeException("Error al eliminar el cliente", e);
+            throw new RuntimeException("Error al actualizar cliente");
+        }
+    }
+
+    public void eliminarCliente(String cedula) {
+        clienteDAO = new ClienteDAO();
+        if (clienteDAO.obtenerPorCedula(cedula) == null) {
+            throw new RuntimeException("El cliente no se encuentra registrado");
+        }
+        try {
+            clienteDAO.eliminar(Long.valueOf(cedula));
+        } catch (Exception e) {
+            throw new RuntimeException("Error al eliminar cliente");
         }
     }
 }
