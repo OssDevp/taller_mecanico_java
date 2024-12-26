@@ -40,7 +40,7 @@ public class VehiculoController {
         return vehiculo;
     }
 
-    public void actualizarCliente(VehiculoEntity vehiculo) {
+    public void actualizarVehiculo(VehiculoEntity vehiculo) {
         vehiculoDAO = new VehiculoDAO();
         if (vehiculoDAO.obtenerPorPlaca(vehiculo.getPlaca()) == null) {
             throw new RuntimeException("El vehiculo no se encuentra registrado");
@@ -52,7 +52,7 @@ public class VehiculoController {
         }
     }
 
-    public void eliminarCliente(String placa) {
+    public void eliminarVehiculo(String placa) {
         vehiculoDAO = new VehiculoDAO();
         if (vehiculoDAO.obtenerPorPlaca(placa) == null) {
             throw new RuntimeException("El vehiculo no se encuentra registrado");
