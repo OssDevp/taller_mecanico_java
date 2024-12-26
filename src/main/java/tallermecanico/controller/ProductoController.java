@@ -12,9 +12,6 @@ public class ProductoController {
 
     public void registrarProducto(ProductoEntity producto) {
         productoDAO = new ProductoDAO();
-        if (productoDAO.obtenerPorId(Long.valueOf(producto.getId())) != null) {
-            throw new RuntimeException("La producto ya se encuentra registrada");
-        }
         try {
             productoDAO.guardar(producto);
         } catch (Exception e) {

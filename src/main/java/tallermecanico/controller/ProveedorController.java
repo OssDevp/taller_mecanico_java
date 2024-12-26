@@ -12,9 +12,6 @@ public class ProveedorController {
 
     public void registrarProveedor(ProveedorEntity proveedor) {
         proveedorDAO = new ProveedorDAO();
-        if (proveedorDAO.obtenerPorId(Long.valueOf(proveedor.getId())) != null) {
-            throw new RuntimeException("La proveedor ya se encuentra registrada");
-        }
         try {
             proveedorDAO.guardar(proveedor);
         } catch (Exception e) {
@@ -22,7 +19,7 @@ public class ProveedorController {
         }
     }
 
-    public List<ProveedorEntity> obtenerProveedors() {
+    public List<ProveedorEntity> obtenerProveedores() {
         proveedorDAO = new ProveedorDAO();
         try {
             return proveedorDAO.obtenerTodos();

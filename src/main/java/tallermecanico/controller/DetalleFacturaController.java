@@ -12,9 +12,6 @@ public class DetalleFacturaController {
 
     public void registrarDetalle(DetalleFacturaEntity detalleFactura) {
         detalleFacturaDAO = new DetalleFacturaDAO();
-        if (detalleFacturaDAO.obtenerPorId(Long.valueOf(detalleFactura.getId())) != null) {
-            throw new RuntimeException("La Factura ya se encuentra registrada");
-        }
         try {
             detalleFacturaDAO.guardar(detalleFactura);
         } catch (Exception e) {

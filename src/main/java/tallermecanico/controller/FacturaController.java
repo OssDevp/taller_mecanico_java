@@ -12,9 +12,6 @@ public class FacturaController {
 
     public void registrarFactura(FacturaEntity factura) {
         facturaDAO = new FacturaDAO();
-        if (facturaDAO.obtenerPorId(Long.valueOf(factura.getId())) != null) {
-            throw new RuntimeException("La factura ya se encuentra registrada");
-        }
         try {
             facturaDAO.guardar(factura);
         } catch (Exception e) {

@@ -5,12 +5,9 @@ import tallermecanico.DAO.CargoDAO;
 import tallermecanico.DAO.ClienteDAO;
 import tallermecanico.DAO.EmpleadoDAO;
 import tallermecanico.controller.ClienteController;
-import tallermecanico.entities.CargoEntity;
-import tallermecanico.entities.ClienteEntity;
-import tallermecanico.entities.EmpleadoEntity;
+import tallermecanico.controller.ServicioController;
+import tallermecanico.entities.*;
 import tallermecanico.controller.DetalleFacturaController;
-import tallermecanico.entities.DetalleFacturaEntity;
-import tallermecanico.entities.FacturaEntity;
 import tallermecanico.view.MenuView;
 
 import java.math.BigDecimal;
@@ -21,15 +18,23 @@ public class Main {
 //        menu.setVisible(true);
 //        menu.setLocationRelativeTo(null);
 
-        DetalleFacturaController detalleController = new DetalleFacturaController();
-        DetalleFacturaEntity detalle = new DetalleFacturaEntity();
-        FacturaEntity factura = new FacturaEntity();
-        factura.
+        // agregar servicio entity
+        ServicioEntity servicio = new ServicioEntity();
+//        servicio.setNombre("Cambio de aceite");
+//        servicio.setDescripcion("Cambio de aceite y filtro");
+//        servicio.setCosto(new BigDecimal(100));
+        ServicioController servicioController = new ServicioController();
+//        servicioController.registrarServicio(servicio);
 
-        detalle.setCantidad(2);
-        detalle.setSubtotal(new BigDecimal(1000));
+        // eliminar servicio
+//        servicioController.eliminarServicio("1");
 
-        System.out.println(detalle);
+        // actualizar servicio
+        servicio.setId(2);
+        servicio.setNombre("Cambio de rueda");
+        servicio.setDescripcion("Cambio de rueda pinchada");
+        servicio.setCosto(new BigDecimal(30000));
+        servicioController.actualizarServicio(servicio);
 
 
     }

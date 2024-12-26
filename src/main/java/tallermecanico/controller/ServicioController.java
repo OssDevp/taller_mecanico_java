@@ -12,9 +12,6 @@ public class ServicioController {
 
     public void registrarServicio(ServicioEntity servicio) {
         servicioDAO = new ServicioDAO();
-        if (servicioDAO.obtenerPorId(Long.valueOf(servicio.getId())) != null) {
-            throw new RuntimeException("El servicio ya se encuentra registrada");
-        }
         try {
             servicioDAO.guardar(servicio);
         } catch (Exception e) {

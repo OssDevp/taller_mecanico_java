@@ -12,9 +12,6 @@ public class OrdenController {
 
     public void registrarOrden(OrdenEntity orden) {
         ordenDAO = new OrdenDAO();
-        if (ordenDAO.obtenerPorId(Long.valueOf(orden.getId())) != null) {
-            throw new RuntimeException("La orden ya se encuentra registrada");
-        }
         try {
             ordenDAO.guardar(orden);
         } catch (Exception e) {
