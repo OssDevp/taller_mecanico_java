@@ -21,7 +21,7 @@ public class EmpleadoEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cargo")
-    private CargoEntity idCargo;
+    private CargoEntity cargo;
 
     @Lob
     @Column(name = "habilidades")
@@ -33,4 +33,18 @@ public class EmpleadoEntity {
     @Column(name = "cedula", nullable = false, length = 45)
     private String cedula;
 
+    public String getDescripcionCargo() {
+        return cargo != null ? cargo.getDescripcion() : null;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpleadoEntity{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", cargo=" + cargo.getDescripcion() +
+                ", habilidades='" + habilidades + '\'' +
+                ", cedula='" + cedula + '\'' +
+                '}';
+    }
 }

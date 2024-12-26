@@ -1,10 +1,16 @@
 package tallermecanico;
 
  
+import tallermecanico.DAO.CargoDAO;
 import tallermecanico.DAO.ClienteDAO;
+import tallermecanico.DAO.EmpleadoDAO;
 import tallermecanico.controller.ClienteController;
+import tallermecanico.entities.CargoEntity;
 import tallermecanico.entities.ClienteEntity;
+import tallermecanico.entities.EmpleadoEntity;
 import tallermecanico.view.MenuView;
+
+import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,14 +18,19 @@ public class Main {
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
 
-//        ClienteEntity cliente = new ClienteEntity();
-//        cliente.setCedula("123450");
-//        cliente.setNombre("Javier");
-//        cliente.setDireccion("Calle 1");
-//        cliente.setTelefono("1234567890");
-//        cliente.setCorreo("juan@correo.com");
+//        CargoEntity cargo = new CargoEntity();
+//        cargo.setDescripcion("Mecanico");
+//        cargo.setSueldo(new BigDecimal(1000));
+
+//        CargoDAO cargoDAO = new CargoDAO();
+//        cargo = cargoDAO.obtenerPorDescripcion("Mecanico");
 //
-//        ClienteController clienteController = new ClienteController();
-//        clienteController.registrarCliente(cliente);
+//        EmpleadoEntity empleado = new EmpleadoEntity();
+//
+//        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+//        empleado = empleadoDAO.obtenerPorCedula("16789");
+//        System.out.println(empleado.toString());
+
+
     }
 }

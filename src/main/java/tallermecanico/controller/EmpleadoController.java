@@ -15,15 +15,21 @@ public class EmpleadoController {
         empleadoDAO = new EmpleadoDAO();
 
         EmpleadoEntity empleadoExiste = empleadoDAO.obtenerPorCedula(empleado.getCedula());
-        if (empleadoExiste == null) {
-            throw new RuntimeException("El empleado no se encuentra registrado");
+
+        if (empleadoExiste != null) {
+            try {
+                actualizarEmpleado(empleado);
+            } catch (Exception e) {
+                throw new RuntimeException("Problema al editar empleado");
+            }
+        } else {
+            try {
+                empleadoDAO.guardar(empleado);
+            } catch (Exception e) {
+                throw new RuntimeException("Error al registrar empleado");
+            }
         }
 
-        try {
-            empleadoDAO.guardar(empleado);
-        } catch (Exception e) {
-            throw new RuntimeException("Error al registrar empleado");
-        }
     }
 
     // OBTENER EMPLEADO

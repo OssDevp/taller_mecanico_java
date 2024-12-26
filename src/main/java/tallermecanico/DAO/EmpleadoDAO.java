@@ -1,7 +1,9 @@
 package tallermecanico.DAO;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import tallermecanico.config.HibernateUtil;
 import tallermecanico.entities.EmpleadoEntity;
 
@@ -9,9 +11,22 @@ import java.util.List;
 
 public class EmpleadoDAO {
     // LISTAR TODOS
+//    public List<EmpleadoEntity> obtenerTodos() {
+//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+//            return session.createQuery("FROM EmpleadoEntity ", EmpleadoEntity.class).list();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+
     public List<EmpleadoEntity> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM EmpleadoEntity ", EmpleadoEntity.class).list();
+            List<EmpleadoEntity> empleados = session.createQuery("FROM EmpleadoEntity", EmpleadoEntity.class).list();
+            for (EmpleadoEntity empleado : empleados) {
+                Hibernate.initialize(empleado.getCargo()); // Forzar la carga del cargo
+            }
+            return empleados;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -31,9 +46,13 @@ public class EmpleadoDAO {
     public EmpleadoEntity obtenerPorCedula(String cedula) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM EmpleadoEntity e WHERE e.cedula = :cedula";
-            return session.createQuery(hql, EmpleadoEntity.class)
+            EmpleadoEntity empleado = session.createQuery(hql, EmpleadoEntity.class)
                     .setParameter("cedula", cedula)
                     .uniqueResult();
+            if (empleado != null) {
+                Hibernate.initialize(empleado.getCargo());
+            }
+            return empleado;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -79,6 +98,21 @@ public class EmpleadoDAO {
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
+        }
+    }
+
+    // OBTENER POR ID (Con el CargoEntity cargado)
+    public EmpleadoEntity obtenerPorIdConCargo(Integer id) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<EmpleadoEntity> query = session.createQuery(
+                    "SELECT e FROM EmpleadoEntity e LEFT JOIN FETCH e.cargo WHERE e.id = :id",
+                    EmpleadoEntity.class
+            );
+            query.setParameter("id", id);
+            return query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

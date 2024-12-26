@@ -19,6 +19,18 @@ public class CargoDAO {
         }
     }
 
+    public CargoEntity obtenerPorDescripcion(String descripcion) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM CargoEntity c WHERE c.descripcion = :descripcion";
+            return session.createQuery(hql, CargoEntity.class)
+                    .setParameter("descripcion", descripcion)
+                    .uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     // OBTENER POR ID
     public CargoEntity obtenerPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

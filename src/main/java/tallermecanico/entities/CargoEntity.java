@@ -24,7 +24,7 @@ public class CargoEntity {
     @Column(name = "sueldo", precision = 10, scale = 2)
     private BigDecimal sueldo;
 
-    @OneToMany(mappedBy = "idCargo")
+    @OneToMany(mappedBy = "cargo", cascade = CascadeType.ALL) // Cambiado "idCargo" a "cargo"
     private Set<EmpleadoEntity> empleados = new LinkedHashSet<>();
 
 }

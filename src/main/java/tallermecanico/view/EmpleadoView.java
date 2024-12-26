@@ -3,19 +3,27 @@ package tallermecanico.view;
 
 import javax.swing.*;
 
+import tallermecanico.controller.CargoController;
 import tallermecanico.controller.EmpleadoController;
+import tallermecanico.entities.CargoEntity;
 import tallermecanico.entities.EmpleadoEntity;
 import tallermecanico.view.components.ImageSize;
+
+import java.util.List;
 
 public class EmpleadoView extends javax.swing.JFrame {
 
     EmpleadoController empleadoController;
+    CargoController cargoController;
     EmpleadoEntity empleadoEntity;
+
 
     public EmpleadoView() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        cargarCargosCombo();
         empleadoController = new EmpleadoController();
+        cargoController = new CargoController();
         setResizable(false);
         setLocationRelativeTo(null);
         ImageSize image = new ImageSize();
@@ -38,17 +46,14 @@ public class EmpleadoView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtIdEmpleado = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtCargo = new javax.swing.JTextField();
         txtHabilidades = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
-        rbActivo = new javax.swing.JRadioButton();
-        rbInactivo = new javax.swing.JRadioButton();
-        jSeparator1 = new javax.swing.JSeparator();
         btnBuscar1 = new javax.swing.JButton();
+        comboBoxCargo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,7 +65,7 @@ public class EmpleadoView extends javax.swing.JFrame {
         lblImage.setText("jLabel5");
         jPanel2.add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 79, 260, 294));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 470));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 450));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,7 +83,6 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 160, -1));
         jPanel3.add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 190, -1));
         jPanel3.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 190, -1));
-        jPanel3.add(txtCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 190, -1));
         jPanel3.add(txtHabilidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 190, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -88,7 +92,6 @@ public class EmpleadoView extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
@@ -98,11 +101,10 @@ public class EmpleadoView extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 80, 30));
+        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 80, 30));
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
-        btnBorrar.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar.setText("Borrar");
         btnBorrar.setBorder(null);
         btnBorrar.setBorderPainted(false);
@@ -112,11 +114,10 @@ public class EmpleadoView extends javax.swing.JFrame {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 80, 30));
+        jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 80, 30));
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
@@ -126,11 +127,10 @@ public class EmpleadoView extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 80, 30));
+        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 80, 30));
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
         btnListar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
-        btnListar.setForeground(new java.awt.Color(204, 204, 204));
         btnListar.setText("Listar Empleados");
         btnListar.setBorder(null);
         btnListar.setBorderPainted(false);
@@ -140,18 +140,10 @@ public class EmpleadoView extends javax.swing.JFrame {
                 btnListarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, 190, 30));
-
-        rbActivo.setText("Activo");
-        jPanel3.add(rbActivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
-
-        rbInactivo.setText("Inactivo");
-        jPanel3.add(rbInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 190, 10));
+        jPanel3.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 190, 30));
 
         btnBuscar1.setBackground(new java.awt.Color(26, 41, 74));
         btnBuscar1.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
-        btnBuscar1.setForeground(new java.awt.Color(204, 204, 204));
         btnBuscar1.setText("Buscar");
         btnBuscar1.setBorder(null);
         btnBuscar1.setBorderPainted(false);
@@ -161,9 +153,11 @@ public class EmpleadoView extends javax.swing.JFrame {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        jPanel3.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 80, 30));
+        jPanel3.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, 80, 30));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 330, 470));
+        jPanel3.add(comboBoxCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 190, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 330, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,8 +179,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     }
 
     //Buscar empleado
-    // FIXME: No se esta buscando por cedula
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {
         String cedula = JOptionPane.showInputDialog(null, "Ingrese la cedula del empleado", "Buscar empleado", JOptionPane.QUESTION_MESSAGE);
         if (cedula.isBlank()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar la cedula del empleado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -195,7 +188,7 @@ public class EmpleadoView extends javax.swing.JFrame {
                 empleadoEntity = empleadoController.obtenerEmpleado(cedula);
                 txtIdEmpleado.setText(empleadoEntity.getCedula());
                 txtNombre.setText(empleadoEntity.getNombre());
-//                txtCargo.setText(empleadoEntity.());
+                comboBoxCargo.setSelectedItem(empleadoEntity.getCargo().getDescripcion());
                 txtHabilidades.setText(empleadoEntity.getHabilidades());
 
                 JOptionPane.showMessageDialog(null, "Empleado encontrado", "Exito", JOptionPane.INFORMATION_MESSAGE);
@@ -232,17 +225,18 @@ public class EmpleadoView extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String cedula = txtIdEmpleado.getText();
         String nombre = txtNombre.getText();
-        String cargo = txtCargo.getText();
+        var cargo = comboBoxCargo.getSelectedItem().toString();
         String habilidades = txtHabilidades.getText();
 
         if (cedula.isBlank() || nombre.isBlank() || cargo.isBlank() || habilidades.isBlank()) {
             JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
+                CargoEntity cargoEntity = cargoController.obtenerCargo(cargo);
                 empleadoEntity = new EmpleadoEntity();
                 empleadoEntity.setCedula(cedula);
                 empleadoEntity.setNombre(nombre);
-//                empleadoEntity.setCargo(cargo);
+                empleadoEntity.setCargo(cargoEntity);
                 empleadoEntity.setHabilidades(habilidades);
 
                 empleadoController.registrarEmpleado(empleadoEntity);
@@ -257,13 +251,23 @@ public class EmpleadoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }
 
+    private void cargarCargosCombo() {
+        CargoController cargoController = new CargoController();
+        List<CargoEntity> cargos = cargoController.obtenerTodos();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+
+        for (CargoEntity cargo: cargos) {
+            model.addElement(cargo.getDescripcion());
+        }
+
+        comboBoxCargo.setModel(model);
+
+    }
+
     private void limpiarCampos() {
         txtIdEmpleado.setText("");
         txtNombre.setText("");
-        txtCargo.setText("");
         txtHabilidades.setText("");
-        rbActivo.setSelected(false);
-        rbInactivo.setSelected(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,6 +277,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.ButtonGroup buttonGroup;
+    private javax.swing.JComboBox<String> comboBoxCargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -281,11 +286,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblImage;
-    private javax.swing.JRadioButton rbActivo;
-    private javax.swing.JRadioButton rbInactivo;
-    private javax.swing.JTextField txtCargo;
     private javax.swing.JTextField txtHabilidades;
     private javax.swing.JTextField txtIdEmpleado;
     private javax.swing.JTextField txtNombre;
