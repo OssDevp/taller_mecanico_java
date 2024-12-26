@@ -86,14 +86,23 @@ public class ProveedorView extends javax.swing.JFrame {
 
         jLabel9.setText("Nombre");
 
+        btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
+        btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar ");
 
         jLabel10.setText("Telefono");
 
+        btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
+        btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar.setText("Borrar datos");
 
         jLabel11.setText("Correo");
 
+        btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
 
         jLabel12.setText("Direccion");
@@ -136,7 +145,7 @@ public class ProveedorView extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGap(24, 24, 24)
                                     .addComponent(jLabel7)))))
-                    .addContainerGap(28, Short.MAX_VALUE)))
+                    .addContainerGap(10, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +179,7 @@ public class ProveedorView extends javax.swing.JFrame {
                         .addComponent(btnGuardar)
                         .addComponent(btnBorrar)
                         .addComponent(btnNuevo))
-                    .addContainerGap(70, Short.MAX_VALUE)))
+                    .addContainerGap(77, Short.MAX_VALUE)))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 0, 350, -1));

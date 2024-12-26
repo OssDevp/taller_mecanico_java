@@ -210,45 +210,45 @@ public class MenuView extends javax.swing.JFrame {
         ordenView.setVisible(true);
     }//GEN-LAST:event_btnRegistrarOrdenActionPerformed
 
-    private void jMnCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnCargoActionPerformed
+    private void jMnCargoActionPerformed(java.awt.event.ActionEvent evt) {                                         
         CargoView cargoView = new CargoView();
         cargoView.setVisible(true);
     }
 
-    private void jMnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnServiciosActionPerformed
+    private void jMnServiciosActionPerformed(java.awt.event.ActionEvent evt) {                                             
         ServicioView servicioView = new ServicioView();
         servicioView.setVisible(true);
     }
 
-    private void jMnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnClienteActionPerformed
+    private void jMnClienteActionPerformed(java.awt.event.ActionEvent evt) {                                           
         clienteView.setVisible(true);
     }
 
-    private void jMnVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnVehiculoActionPerformed
+    private void jMnVehiculoActionPerformed(java.awt.event.ActionEvent evt) {                                            
         VehiculoView vehiculoView = new VehiculoView();
         vehiculoView.setVisible(true);
     }
 
-    private void jMnFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnFacturasActionPerformed
+    private void jMnFacturasActionPerformed(java.awt.event.ActionEvent evt) {                                            
         FacturaView facturaView = new FacturaView();
         facturaView.setVisible(true);
     }
 
-    private void jMnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnEmpleadoActionPerformed
+    private void jMnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {                                            
         EmpleadoView empleadoView = new EmpleadoView();
         empleadoView.setVisible(true);
     }
 
-    private void jMnProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProductoActionPerformed
+    private void jMnProductoActionPerformed(java.awt.event.ActionEvent evt) {                                            
         ProductoView productoView = new ProductoView();
         productoView.setVisible(true);
                 
     }
 
-    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {                                       
     }
 
-    private void jMnProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnProveedorActionPerformed
+    private void jMnProveedorActionPerformed(java.awt.event.ActionEvent evt) {                                             
         ProveedorView proveedorView = new ProveedorView();
         proveedorView.setVisible(true);
     }

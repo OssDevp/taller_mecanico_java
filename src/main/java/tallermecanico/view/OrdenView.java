@@ -103,7 +103,7 @@ public class OrdenView extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(153, 153, 153));
+        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -117,7 +117,7 @@ public class OrdenView extends javax.swing.JFrame {
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(153, 153, 153));
+        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
@@ -132,7 +132,7 @@ public class OrdenView extends javax.swing.JFrame {
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        btnBorrar.setForeground(new java.awt.Color(153, 153, 153));
+        btnBorrar.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar.setText("Borrar");
         btnBorrar.setToolTipText("");
         btnBorrar.setBorder(null);
@@ -191,7 +191,7 @@ public class OrdenView extends javax.swing.JFrame {
 
         btnEditar.setBackground(new java.awt.Color(26, 41, 74));
         btnEditar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(153, 153, 153));
+        btnEditar.setForeground(new java.awt.Color(204, 204, 204));
         btnEditar.setText("Editar");
         btnEditar.setToolTipText("");
         btnEditar.setBorder(null);

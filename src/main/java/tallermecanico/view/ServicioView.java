@@ -63,29 +63,38 @@ public class ServicioView extends javax.swing.JFrame {
         jLabel6.setText("Servicio");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 6, 73, 35));
 
+        btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
+        btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 277, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
+        btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
+        btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar.setText("Eliminar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 277, -1, -1));
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
 
+        btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 277, -1, -1));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(26, 41, 74));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

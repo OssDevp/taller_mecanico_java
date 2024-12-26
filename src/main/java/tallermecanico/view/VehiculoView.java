@@ -71,32 +71,38 @@ private ImageSize image = new ImageSize();
         jLabel4.setText("Modelo");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
-        btnGuardar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
+        btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
-        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
+        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, 30));
 
-        btnBorrar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
+        btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         btnBorrar.setText("Borrar");
-        jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+        jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 80, 30));
 
         jLabel7.setText("Color");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
 
-        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
+        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 90, 30));
 
         jLabel8.setText("Cedula Cliente");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
 
-        tbnBuscar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        tbnBuscar.setBackground(new java.awt.Color(26, 41, 74));
+        tbnBuscar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         tbnBuscar.setText("Buscar");
-        jPanel3.add(tbnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
+        jPanel3.add(tbnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 30));
         jPanel3.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 123, -1));
 
         btnIrCliente.setText("...");

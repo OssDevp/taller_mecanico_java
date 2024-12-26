@@ -2,6 +2,8 @@
 package tallermecanico.view;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import tallermecanico.entities.ClienteEntity;
 
 public class CargoView extends javax.swing.JFrame {
 
@@ -58,6 +60,7 @@ public class CargoView extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
@@ -71,6 +74,7 @@ public class CargoView extends javax.swing.JFrame {
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
@@ -84,6 +88,7 @@ public class CargoView extends javax.swing.JFrame {
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar.setText("Borrar");
         btnBorrar.setBorder(null);
         btnBorrar.setBorderPainted(false);
@@ -101,6 +106,7 @@ public class CargoView extends javax.swing.JFrame {
 
         btnEditar.setBackground(new java.awt.Color(26, 41, 74));
         btnEditar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(204, 204, 204));
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
         btnEditar.setBorderPainted(false);
@@ -114,6 +120,7 @@ public class CargoView extends javax.swing.JFrame {
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
         btnListar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnListar.setForeground(new java.awt.Color(204, 204, 204));
         btnListar.setText("Listar");
         btnListar.setBorder(null);
         btnListar.setBorderPainted(false);
@@ -142,26 +149,65 @@ public class CargoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
+        this.limpiarCampos();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+        String id = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
+
+        if (id.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el cliente?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirmacion == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            try {
+                // TODO: Aqui va el cargoController 
+                //clienteController.eliminarCliente(cedula);
+                JOptionPane.showMessageDialog(null, "Cargo Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        String id = txtIdCargo.getText();
+        String descripcion = txtDescripcion.getText();
+        String sueldo = txtSueldo.getText();
+
+        if(id.isBlank()|| descripcion.isBlank()|| sueldo.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                // TODO: Aqui va el cargoEntity 
+                JOptionPane.showMessageDialog(null, "Cliente Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnListarActionPerformed
 
-
+private void limpiarCampos() {
+        txtIdCargo.setText("");
+        txtDescripcion.setText("");
+        txtSueldo.setText("");
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnEditar;

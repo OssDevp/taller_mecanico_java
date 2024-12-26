@@ -50,14 +50,20 @@ public class ProductoView extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnNuevo1.setBackground(new java.awt.Color(26, 41, 74));
+        btnNuevo1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnNuevo1.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo1.setText("Nuevo");
-        jPanel2.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        jPanel2.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 90, 30));
 
         jLabel8.setText("Id Proveedor");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
 
+        btnBuscar1.setBackground(new java.awt.Color(26, 41, 74));
+        btnBuscar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBuscar1.setForeground(new java.awt.Color(204, 204, 204));
         btnBuscar1.setText("Buscar");
-        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 340, -1, -1));
+        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 90, 30));
         jPanel2.add(txtIdProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 110, -1));
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 110, -1));
         jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 110, -1));
@@ -91,19 +97,25 @@ public class ProductoView extends javax.swing.JFrame {
         jLabel12.setText("Descripcion");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 95, -1));
 
+        btnGuardar1.setBackground(new java.awt.Color(26, 41, 74));
+        btnGuardar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnGuardar1.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar1.setText("Guardar");
         btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardar1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
+        jPanel2.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 90, 30));
 
         jLabel13.setText("Precio Unitario");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
 
+        btnBorrar1.setBackground(new java.awt.Color(26, 41, 74));
+        btnBorrar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBorrar1.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar1.setText("Eliminar");
-        jPanel2.add(btnBorrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, -1, -1));
+        jPanel2.add(btnBorrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 90, 30));
 
         jLabel14.setText("Stock");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 78, -1));

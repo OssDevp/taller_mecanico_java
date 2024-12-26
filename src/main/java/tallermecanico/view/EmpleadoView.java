@@ -88,6 +88,7 @@ public class EmpleadoView extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
@@ -101,6 +102,7 @@ public class EmpleadoView extends javax.swing.JFrame {
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar.setText("Borrar");
         btnBorrar.setBorder(null);
         btnBorrar.setBorderPainted(false);
@@ -114,6 +116,7 @@ public class EmpleadoView extends javax.swing.JFrame {
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
@@ -127,6 +130,7 @@ public class EmpleadoView extends javax.swing.JFrame {
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
         btnListar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnListar.setForeground(new java.awt.Color(204, 204, 204));
         btnListar.setText("Listar Empleados");
         btnListar.setBorder(null);
         btnListar.setBorderPainted(false);
@@ -145,11 +149,9 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(rbInactivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 190, 10));
 
-        buttonGroup.add(rbActivo);
-        buttonGroup.add(rbInactivo);
-
         btnBuscar1.setBackground(new java.awt.Color(26, 41, 74));
         btnBuscar1.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnBuscar1.setForeground(new java.awt.Color(204, 204, 204));
         btnBuscar1.setText("Buscar");
         btnBuscar1.setBorder(null);
         btnBuscar1.setBorderPainted(false);
@@ -184,7 +186,7 @@ public class EmpleadoView extends javax.swing.JFrame {
 
     //Buscar empleado
     // FIXME: No se esta buscando por cedula
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String cedula = JOptionPane.showInputDialog(null, "Ingrese la cedula del empleado", "Buscar empleado", JOptionPane.QUESTION_MESSAGE);
         if (cedula.isBlank()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar la cedula del empleado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -204,7 +206,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     }
 
     //Borrar empleado
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
 
         if (cedula.isBlank()) {
@@ -227,7 +229,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     }
 
     //Guardar empleado
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String cedula = txtIdEmpleado.getText();
         String nombre = txtNombre.getText();
         String cargo = txtCargo.getText();

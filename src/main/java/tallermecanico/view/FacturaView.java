@@ -127,6 +127,7 @@ public class FacturaView extends javax.swing.JFrame {
 
         btnVerDetalle.setBackground(new java.awt.Color(26, 41, 74));
         btnVerDetalle.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnVerDetalle.setForeground(new java.awt.Color(204, 204, 204));
         btnVerDetalle.setText("Ver Detalles Facturas");
         btnVerDetalle.setBorder(null);
         btnVerDetalle.setBorderPainted(false);
@@ -140,6 +141,7 @@ public class FacturaView extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
@@ -153,6 +155,7 @@ public class FacturaView extends javax.swing.JFrame {
 
         btnEditar.setBackground(new java.awt.Color(26, 41, 74));
         btnEditar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(204, 204, 204));
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
         btnEditar.setBorderPainted(false);
@@ -166,6 +169,7 @@ public class FacturaView extends javax.swing.JFrame {
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
