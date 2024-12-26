@@ -23,7 +23,7 @@ public class ClienteController {
         }
     }
 
-    public List<ClienteEntity> obtenerClientes(String cedula) {
+    public List<ClienteEntity> obtenerClientes() {
         clienteDAO = new ClienteDAO();
         try {
             return clienteDAO.obtenerTodos();

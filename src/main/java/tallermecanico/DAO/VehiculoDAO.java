@@ -3,7 +3,9 @@ package tallermecanico.DAO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import tallermecanico.config.HibernateUtil;
+import tallermecanico.entities.ClienteEntity;
 import tallermecanico.entities.VehiculoEntity;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -22,6 +24,19 @@ public class VehiculoDAO {
     public VehiculoEntity obtenerPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(VehiculoEntity.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // OBTENER POR CHAPA
+    public VehiculoEntity obtenerPorPlaca(String placa) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM VehiculoEntity c WHERE c.placa = :placa";
+            return session.createQuery(hql, VehiculoEntity.class)
+                    .setParameter("placa", placa)
+                    .uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -53,6 +68,35 @@ public class VehiculoDAO {
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }
+    }
+
+    // ELIMINAR POR PLACA
+    public void eliminarPorPlaca(String placa) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+
+            String hql = "FROM VehiculoEntity WHERE placa = :placa";
+            Query<VehiculoEntity> query = session.createQuery(hql, VehiculoEntity.class);
+            query.setParameter("placa", placa);
+
+
+            VehiculoEntity vehiculo = query.uniqueResult();
+
+
+            if (vehiculo != null) {
+                session.delete(vehiculo);
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
             e.printStackTrace();
         }
     }
