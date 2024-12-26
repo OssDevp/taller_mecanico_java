@@ -3,13 +3,20 @@ package tallermecanico.view;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import tallermecanico.entities.ClienteEntity;
+import tallermecanico.view.components.ImageSize;
 
 public class CargoView extends javax.swing.JFrame {
 
     public CargoView() {
         initComponents();
+        //TODO: Aqui va el cargoController
+        //clienteController = new ClienteController();
+        setTitle("Cargo");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        ImageSize image = new ImageSize();
+        image.setSize(lblImage, "src/main/resources/cargo.png");
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -157,13 +164,13 @@ public class CargoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        String id = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
+        String id = JOptionPane.showInputDialog(null, "Ingrese su Id:", "Eliminar Cargo", JOptionPane.QUESTION_MESSAGE);
 
         if (id.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
 
-            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el cliente?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el cargo?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirmacion == JOptionPane.NO_OPTION) {
                 return;
             }
