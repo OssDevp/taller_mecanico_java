@@ -1,12 +1,19 @@
 
 package tallermecanico.view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
+import tallermecanico.controller.ProductoController;
+import tallermecanico.entities.ProductoEntity;
 import tallermecanico.view.components.ImageSize;
+
+import java.math.BigDecimal;
+import java.util.Objects;
 
 public class ProductoView extends javax.swing.JFrame {
 
     private ImageSize image = new ImageSize();
+    private ProductoController productoController = new ProductoController();
   
     public ProductoView() {
         initComponents();
@@ -185,20 +192,95 @@ public class ProductoView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIrProveedorActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardar1ActionPerformed
+        String idProducto = txtIdProducto.getText();
+        String nombre = txtNombre.getText();
+        String descripcion = txtDescripcion.getText();
+        String precio = txtPrecio.getText();
+        BigDecimal precioDecimal;
+        String idProveedor = txtIdProveedor1.getText();
+
+        if (nombre.isEmpty() || descripcion.isEmpty() || precio.isEmpty() || idProveedor.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        try {
+            if (precio != null) {
+                precioDecimal = new BigDecimal(precio);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "El costo debe ser un numero", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        try {
+            ProductoEntity producto = new ProductoEntity();
+//                producto.setNombre(nombre);
+//                producto.setDescripcion(descripcion);
+//                producto.setPrecioUnitario(precioDecimal);
+//                producto.setIdProveedor(idProveedor);
+            productoController.registrarProducto(producto);
+
+            JOptionPane.showMessageDialog(null, "Dato Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
+            this.limpiarCampos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevo1ActionPerformed
+        this.limpiarCampos();
+    }
 
-    private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBorrar1ActionPerformed
+    private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {
+        String id = JOptionPane.showInputDialog(null, "Ingrese su ID:", "Eliminar Producto", JOptionPane.QUESTION_MESSAGE);
+
+        if (id != null && id.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        if(id != null) {
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el producto?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirmacion == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            try {
+                productoController.eliminarProducto(id);
+                JOptionPane.showMessageDialog(null, "Producto Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar1ActionPerformed
+        String id = JOptionPane.showInputDialog(null, "Ingrese su ID:", "Buscar Producto", JOptionPane.QUESTION_MESSAGE);
+
+        if (id != null && id.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        if(id != null) {
+            try {
+                ProductoEntity producto = productoController.obtenerProducto(id);
+                txtIdProducto.setText(producto.getId().toString());
+                txtNombre.setText(producto.getNombre());
+                txtDescripcion.setText(producto.getDescripcion());
+                txtPrecio.setText(producto.getPrecioUnitario().toString());
+                txtIdProveedor1.setText(producto.getIdProveedor().toString());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void limpiarCampos() {
+        txtIdProducto.setText("");
+        txtNombre.setText("");
+        txtDescripcion.setText("");
+        txtPrecio.setText("");
+        txtIdProveedor1.setText("");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
