@@ -3,14 +3,18 @@ package tallermecanico.view;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import tallermecanico.controller.CargoController;
+import tallermecanico.entities.CargoEntity;
 import tallermecanico.view.components.ImageSize;
 
 public class CargoView extends javax.swing.JFrame {
 
+    private CargoEntity cargoEntity;
+    private Object cargoController;
+
     public CargoView() {
         initComponents();
-        //TODO: Aqui va el cargoController
-        //clienteController = new ClienteController();
+        cargoController = new CargoController();
         setTitle("Cargo");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -175,9 +179,8 @@ public class CargoView extends javax.swing.JFrame {
                 return;
             }
 
-            try {
-                // TODO: Aqui va el cargoController 
-                //clienteController.eliminarCliente(cedula);
+            try { 
+                //cargoController.eliminarCargo(Long.valueOf(id));
                 JOptionPane.showMessageDialog(null, "Cargo Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
                 this.limpiarCampos();
             } catch (Exception e) {
@@ -195,7 +198,11 @@ public class CargoView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
-                // TODO: Aqui va el cargoEntity 
+                cargoEntity = new CargoEntity();
+                cargoEntity = cargoEntity.obtenerIdCargo(id);
+                txtDescripcion.setText(cargoEntity.getDescripcion());
+                txtSueldo.setText(cargoEntity.getSueldo());
+                
                 JOptionPane.showMessageDialog(null, "Cliente Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
                 this.limpiarCampos();
             } catch (Exception e) {
