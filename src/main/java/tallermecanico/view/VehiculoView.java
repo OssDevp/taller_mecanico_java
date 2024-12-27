@@ -2,14 +2,22 @@
 package tallermecanico.view;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import tallermecanico.controller.VehiculoController;
+import tallermecanico.entities.VehiculoEntity;
 import tallermecanico.view.components.ImageSize;
 
 
 public class VehiculoView extends javax.swing.JFrame {
 
+    private final VehiculoController vehiculoController;
+
 private ImageSize image = new ImageSize();
+    private VehiculoEntity vehiculoEntity;
     public VehiculoView() {
         initComponents();
+        vehiculoController = new VehiculoController();
+        setTitle("Vehiculo");
          setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -75,12 +83,27 @@ private ImageSize image = new ImageSize();
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(204, 204, 204));
         btnGuardar.setText("Guardar");
-        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, 30));
+        btnGuardar.setBorder(null);
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 90, 30));
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar.setText("Borrar");
-        jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 80, 30));
+        btnBorrar.setBorder(null);
+        btnBorrar.setBorderPainted(false);
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 90, 30));
 
         jLabel7.setText("Color");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
@@ -89,24 +112,38 @@ private ImageSize image = new ImageSize();
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo.setText("Nuevo");
+        btnNuevo.setBorder(null);
+        btnNuevo.setBorderPainted(false);
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 90, 30));
+        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 90, 30));
 
         jLabel8.setText("Cedula Cliente");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, -1, -1));
 
         tbnBuscar.setBackground(new java.awt.Color(26, 41, 74));
         tbnBuscar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        tbnBuscar.setForeground(new java.awt.Color(204, 204, 204));
         tbnBuscar.setText("Buscar");
-        jPanel3.add(tbnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, 30));
+        tbnBuscar.setBorder(null);
+        tbnBuscar.setBorderPainted(false);
+        tbnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(tbnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 90, 30));
         jPanel3.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 123, -1));
 
+        btnIrCliente.setBackground(new java.awt.Color(26, 41, 74));
+        btnIrCliente.setForeground(new java.awt.Color(204, 204, 204));
         btnIrCliente.setText("...");
-        jPanel3.add(btnIrCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+        btnIrCliente.setBorder(null);
+        btnIrCliente.setBorderPainted(false);
+        jPanel3.add(btnIrCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 20, 20));
         jPanel3.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 123, -1));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
@@ -136,6 +173,55 @@ private ImageSize image = new ImageSize();
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.limpiarCampos();
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void tbnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnBuscarActionPerformed
+        String placa;
+        placa = JOptionPane.showInputDialog(null, "Ingrese su placa:", "Buscar Vehiculo", JOptionPane.QUESTION_MESSAGE);
+
+        if (placa.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            try {
+                vehiculoEntity = new VehiculoEntity();
+//                vehiculoEntity = vehiculoController.obtenerPlaca(placa);
+                txtMarca.setText(vehiculoEntity.getMarca());
+                txtModelo.setText(vehiculoEntity.getModelo());
+                txtColor.setText(vehiculoEntity.getColor());
+                txtAnho.setText(vehiculoEntity.getAnho());
+                 // txtIdCliente.setText(vehiculoEntity.getIdCliente()); 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_tbnBuscarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        String placa = JOptionPane.showInputDialog(null, "Ingrese su Placa:", "Eliminar Vehiculo", JOptionPane.QUESTION_MESSAGE);
+
+        if (placa.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el vehiculo?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirmacion == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            try {
+                vehiculoController.eliminarVehiculo(placa);
+                JOptionPane.showMessageDialog(null, "Vehiculo Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void limpiarCampos() {
         txtPlaca.setText("");

@@ -168,7 +168,7 @@ public class ClienteView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
 
         if (cedula.isBlank()) {
