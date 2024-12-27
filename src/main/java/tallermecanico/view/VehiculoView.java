@@ -198,7 +198,31 @@ private ImageSize image = new ImageSize();
     }//GEN-LAST:event_tbnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        String placa = txtPlaca.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String anho = txtAnho.getText();
+        String cliente = txtIdCliente.getText();
+
+        if(placa.isBlank()|| marca.isBlank()|| modelo.isBlank() || anho.isBlank() || cliente.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                vehiculoEntity = new VehiculoEntity();
+                vehiculoEntity.setPlaca(placa);
+                vehiculoEntity.setMarca(marca);
+                vehiculoEntity.setModelo(modelo);
+                vehiculoEntity.setAnho(anho);
+                vehiculoEntity.setIdCliente(cliente);
+
+                vehiculoController.registrarVehiculo(vehiculoEntity);
+
+                JOptionPane.showMessageDialog(null, "Vehiculo Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
