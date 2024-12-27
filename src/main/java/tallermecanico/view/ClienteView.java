@@ -171,9 +171,12 @@ public class ClienteView extends javax.swing.JFrame {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-        if (cedula.isBlank()) {
+        if (cedula != null && cedula.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+            return;
+        }
+
+        if (cedula != null && cedula.length() > 5) {
 
             var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el cliente?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirmacion == JOptionPane.NO_OPTION) {
@@ -191,13 +194,13 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        String cedula;
-        cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Buscar Cliente", JOptionPane.QUESTION_MESSAGE);
+        String cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Buscar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-        if (cedula.isBlank()) {
+        if (cedula != null && cedula.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+        }
 
+        if(cedula != null && cedula.length() > 5) {
             try {
                 clienteEntity = new ClienteEntity();
                 clienteEntity = clienteController.obtenerCliente(cedula);
@@ -209,7 +212,6 @@ public class ClienteView extends javax.swing.JFrame {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
             }
-
         }
     }
 

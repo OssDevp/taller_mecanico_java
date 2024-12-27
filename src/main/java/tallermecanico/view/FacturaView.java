@@ -49,6 +49,8 @@ public class FacturaView extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        btnVerCliente = new javax.swing.JButton();
+        btnVerOrden = new javax.swing.JButton();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -102,7 +104,7 @@ public class FacturaView extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(txtCliente);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, -1));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 120, -1));
 
         jLabel4.setText("Nro Cliente");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
@@ -120,7 +122,7 @@ public class FacturaView extends javax.swing.JFrame {
 
         jScrollPane5.setViewportView(txtOrden);
 
-        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 160, -1));
+        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 120, -1));
 
         jLabel6.setText("Nro Orden");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
@@ -181,6 +183,28 @@ public class FacturaView extends javax.swing.JFrame {
         });
         jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 90, 30));
 
+        btnVerCliente.setBackground(new java.awt.Color(26, 41, 74));
+        btnVerCliente.setText("...");
+        btnVerCliente.setBorderPainted(false);
+        btnVerCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerClienteActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnVerCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 30, -1));
+
+        btnVerOrden.setBackground(new java.awt.Color(26, 41, 74));
+        btnVerOrden.setText("...");
+        btnVerOrden.setBorderPainted(false);
+        btnVerOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerOrdenActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnVerOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 30, -1));
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 430, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,13 +237,25 @@ public class FacturaView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerDetalleActionPerformed
 
+    private void btnVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClienteActionPerformed
+        ClienteView clienteView = new ClienteView();
+        clienteView.setVisible(true);
+    }//GEN-LAST:event_btnVerClienteActionPerformed
+
+    private void btnVerOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerOrdenActionPerformed
+        OrdenView ordenView = new OrdenView();
+        ordenView.setVisible(true);
+    }//GEN-LAST:event_btnVerOrdenActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnVerCliente;
     private javax.swing.JButton btnVerDetalle;
+    private javax.swing.JButton btnVerOrden;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

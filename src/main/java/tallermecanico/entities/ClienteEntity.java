@@ -39,7 +39,7 @@ public class ClienteEntity {
     @OneToMany(mappedBy = "idCliente")
     private Set<OrdenEntity> ordenes = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idCliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private Set<VehiculoEntity> vehiculos = new LinkedHashSet<>();
 
 }

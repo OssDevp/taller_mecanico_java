@@ -54,7 +54,7 @@ public class VehiculoController {
 
     public void eliminarVehiculo(String placa) {
         vehiculoDAO = new VehiculoDAO();
-        if (vehiculoDAO.obtenerPorPlaca(placa) == null) {
+        if (obtenerVehiculo(placa) == null) {
             throw new RuntimeException("El vehiculo no se encuentra registrado");
         }
         try {

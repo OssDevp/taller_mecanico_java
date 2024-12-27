@@ -27,13 +27,28 @@ public class CargoController {
         return cargoDAO.obtenerTodos();
     }
 
-    // Eliminar un cargo
-    public void eliminarCargo(Long id) {
+    // Actualizar un cargo
+    public void actualizarCargo(CargoEntity cargo) {
         CargoDAO cargoDAO = new CargoDAO();
-        if (cargoDAO.obtenerPorId(id) == null) {
+        if (cargoDAO.obtenerPorId(Long.valueOf(cargo.getId())) == null) {
             throw new IllegalArgumentException("El cargo no existe");
         }
-        cargoDAO.eliminar(id);
+        cargoDAO.guardar(cargo);
+    }
+
+    // Eliminar un cargo
+    public void eliminarCargo(String descripcion) {
+        CargoDAO cargoDAO = new CargoDAO();
+        try {
+            CargoEntity cargo = cargoDAO.obtenerPorDescripcion(descripcion);
+            if (cargo == null) {
+                throw new IllegalArgumentException("El cargo no existe");
+            }
+            cargoDAO.eliminar(Long.valueOf(cargo.getId()));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("El cargo no existe");
+        }
+
     }
 }
 

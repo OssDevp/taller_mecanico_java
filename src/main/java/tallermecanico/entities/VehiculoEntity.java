@@ -34,7 +34,7 @@ public class VehiculoEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente")
-    private ClienteEntity idCliente;
+    private ClienteEntity cliente;
 
     @OneToMany(mappedBy = "idVehiculo")
     private Set<OrdenEntity> ordenes = new LinkedHashSet<>();

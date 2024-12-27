@@ -7,10 +7,12 @@ import tallermecanico.controller.CargoController;
 import tallermecanico.entities.CargoEntity;
 import tallermecanico.view.components.ImageSize;
 
+import java.math.BigDecimal;
+
 public class CargoView extends javax.swing.JFrame {
 
+    private final CargoController cargoController;
     private CargoEntity cargoEntity;
-    private Object cargoController;
 
     public CargoView() {
         initComponents();
@@ -161,16 +163,29 @@ public class CargoView extends javax.swing.JFrame {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.limpiarCampos();
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        
-    }//GEN-LAST:event_btnEditarActionPerformed
+        String descripcion = JOptionPane.showInputDialog(null, "Ingrese la descripcion del cargo:", "Editar Cargo", JOptionPane.QUESTION_MESSAGE);
+
+        if (descripcion.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            try {
+                cargoEntity = cargoController.obtenerCargo(descripcion);
+                txtIdCargo.setText(String.valueOf(cargoEntity.getId()));
+                txtDescripcion.setText(cargoEntity.getDescripcion());
+                txtSueldo.setText(String.valueOf(cargoEntity.getSueldo()));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        String id = JOptionPane.showInputDialog(null, "Ingrese su Id:", "Eliminar Cargo", JOptionPane.QUESTION_MESSAGE);
+        String descripcion = JOptionPane.showInputDialog(null, "Ingrese el Cargo:", "Eliminar Cargo", JOptionPane.QUESTION_MESSAGE);
 
-        if (id.isBlank()) {
+        if (descripcion.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
 
@@ -179,41 +194,41 @@ public class CargoView extends javax.swing.JFrame {
                 return;
             }
 
-            try { 
-                //cargoController.eliminarCargo(Long.valueOf(id));
+            try {
+                cargoController.eliminarCargo(descripcion);
                 JOptionPane.showMessageDialog(null, "Cargo Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
                 this.limpiarCampos();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btnBorrarActionPerformed
+    }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        String id = txtIdCargo.getText();
         String descripcion = txtDescripcion.getText();
         String sueldo = txtSueldo.getText();
 
-        if(id.isBlank()|| descripcion.isBlank()|| sueldo.isBlank()) {
+        if(descripcion.isBlank()|| sueldo.isBlank()) {
             JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
                 cargoEntity = new CargoEntity();
-                cargoEntity = cargoEntity.obtenerIdCargo(id);
-                txtDescripcion.setText(cargoEntity.getDescripcion());
-                txtSueldo.setText(cargoEntity.getSueldo());
-                
-                JOptionPane.showMessageDialog(null, "Cliente Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
+                cargoEntity.setDescripcion(txtDescripcion.getText());
+                cargoEntity.setSueldo(new BigDecimal(txtSueldo.getText()));
+
+                cargoController.guardarCargo(cargoEntity);
+
+                JOptionPane.showMessageDialog(null, "Cargo Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
                 this.limpiarCampos();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarActionPerformed
+    }
 
 private void limpiarCampos() {
         txtIdCargo.setText("");

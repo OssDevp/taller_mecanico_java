@@ -157,7 +157,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnIrClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIrCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 25, -1));
+        jPanel1.add(btnIrCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 25, 20));
 
         btnIrVehiculo.setBackground(new java.awt.Color(26, 41, 74));
         btnIrVehiculo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -170,7 +170,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnIrVehiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIrVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 25, -1));
+        jPanel1.add(btnIrVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 25, 20));
 
         btnIrEmpleado.setBackground(new java.awt.Color(26, 41, 74));
         btnIrEmpleado.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -183,7 +183,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnIrEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIrEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 25, -1));
+        jPanel1.add(btnIrEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 25, 20));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Trabajando", "Finalizado" }));
         jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

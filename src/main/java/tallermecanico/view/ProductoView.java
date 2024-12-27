@@ -29,7 +29,7 @@ public class ProductoView extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
-        btnIrProveedor1 = new javax.swing.JButton();
+        btnIrProveedor = new javax.swing.JButton();
         txtIdProveedor1 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -54,6 +54,11 @@ public class ProductoView extends javax.swing.JFrame {
         btnNuevo1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         btnNuevo1.setForeground(new java.awt.Color(204, 204, 204));
         btnNuevo1.setText("Nuevo");
+        btnNuevo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevo1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 90, 30));
 
         jLabel8.setText("Id Proveedor");
@@ -63,39 +68,44 @@ public class ProductoView extends javax.swing.JFrame {
         btnBuscar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         btnBuscar1.setForeground(new java.awt.Color(204, 204, 204));
         btnBuscar1.setText("Buscar");
+        btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscar1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 90, 30));
-        jPanel2.add(txtIdProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 110, -1));
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 110, -1));
-        jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 110, -1));
+        jPanel2.add(txtIdProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 130, -1));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 130, -1));
+        jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 130, -1));
 
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
             }
         });
-        jPanel2.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 110, -1));
+        jPanel2.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 130, -1));
 
-        btnIrProveedor1.setText("...");
-        btnIrProveedor1.addActionListener(new java.awt.event.ActionListener() {
+        btnIrProveedor.setText("...");
+        btnIrProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIrProveedor1ActionPerformed(evt);
+                btnIrProveedorActionPerformed(evt);
             }
         });
-        jPanel2.add(btnIrProveedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 23, -1));
-        jPanel2.add(txtIdProveedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 110, -1));
+        jPanel2.add(btnIrProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 23, -1));
+        jPanel2.add(txtIdProveedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 100, -1));
 
         jLabel9.setText("Id Producto");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 95, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 95, -1));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         jLabel10.setText("Producto");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 70, 50));
 
         jLabel11.setText("Nombre");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 95, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 95, -1));
 
         jLabel12.setText("Descripcion");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 95, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 95, -1));
 
         btnGuardar1.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -115,11 +125,16 @@ public class ProductoView extends javax.swing.JFrame {
         btnBorrar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         btnBorrar1.setForeground(new java.awt.Color(204, 204, 204));
         btnBorrar1.setText("Eliminar");
+        btnBorrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrar1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnBorrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 90, 30));
 
         jLabel14.setText("Stock");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 78, -1));
-        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 110, -1));
+        jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 130, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(298, 0, 383, 444));
 
@@ -164,21 +179,33 @@ public class ProductoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioActionPerformed
 
-    private void btnIrProveedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrProveedor1ActionPerformed
+    private void btnIrProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrProveedorActionPerformed
         ProveedorView proveedorView = new ProveedorView();
         proveedorView.setVisible(true);
-    }//GEN-LAST:event_btnIrProveedor1ActionPerformed
+    }//GEN-LAST:event_btnIrProveedorActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardar1ActionPerformed
+
+    private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNuevo1ActionPerformed
+
+    private void btnBorrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrar1ActionPerformed
+
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar1;
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnGuardar1;
-    private javax.swing.JButton btnIrProveedor1;
+    private javax.swing.JButton btnIrProveedor;
     private javax.swing.JButton btnNuevo1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

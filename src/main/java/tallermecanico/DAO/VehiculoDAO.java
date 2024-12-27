@@ -1,5 +1,6 @@
 package tallermecanico.DAO;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import tallermecanico.config.HibernateUtil;
@@ -13,7 +14,11 @@ public class VehiculoDAO {
     // LISTAR TODOS
     public List<VehiculoEntity> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM VehiculoEntity ", VehiculoEntity.class).list();
+            List<VehiculoEntity> vehiculo = session.createQuery("FROM VehiculoEntity ", VehiculoEntity.class).list();
+
+            for (VehiculoEntity vehiculos : vehiculo) Hibernate.initialize(vehiculos.getCliente());
+
+            return vehiculo;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -34,9 +39,13 @@ public class VehiculoDAO {
     public VehiculoEntity obtenerPorPlaca(String placa) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM VehiculoEntity c WHERE c.placa = :placa";
-            return session.createQuery(hql, VehiculoEntity.class)
+            VehiculoEntity vehiculo = session.createQuery(hql, VehiculoEntity.class)
                     .setParameter("placa", placa)
                     .uniqueResult();
+
+            if (vehiculo != null) Hibernate.initialize(vehiculo.getCliente());
+
+            return vehiculo;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

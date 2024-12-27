@@ -3,6 +3,7 @@ package tallermecanico.view;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
 import tallermecanico.controller.VehiculoController;
 import tallermecanico.entities.VehiculoEntity;
 import tallermecanico.view.components.ImageSize;
@@ -11,17 +12,17 @@ import tallermecanico.view.components.ImageSize;
 public class VehiculoView extends javax.swing.JFrame {
 
     private final VehiculoController vehiculoController;
-
-private ImageSize image = new ImageSize();
     private VehiculoEntity vehiculoEntity;
+
     public VehiculoView() {
         initComponents();
         vehiculoController = new VehiculoController();
         setTitle("Vehiculo");
-         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
-        this.image.setSize(lblImage, "src/main/resources/vehiculo.png");
+        ImageSize image = new ImageSize();
+        image.setSize(lblImage, "src/main/resources/vehiculo.png");
     }
 
 
@@ -159,12 +160,12 @@ private ImageSize image = new ImageSize();
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -172,30 +173,27 @@ private ImageSize image = new ImageSize();
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         this.limpiarCampos();
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }
 
-    private void tbnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnBuscarActionPerformed
-        String placa;
-        placa = JOptionPane.showInputDialog(null, "Ingrese su placa:", "Buscar Vehiculo", JOptionPane.QUESTION_MESSAGE);
+    private void tbnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        String placa = JOptionPane.showInputDialog(null, "Ingrese su placa:", "Buscar Vehiculo", JOptionPane.QUESTION_MESSAGE);
 
         if (placa.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
-
             try {
                 vehiculoEntity = new VehiculoEntity();
-//                vehiculoEntity = vehiculoController.obtenerPlaca(placa);
+                vehiculoEntity = vehiculoController.obtenerVehiculo(placa);
                 txtMarca.setText(vehiculoEntity.getMarca());
                 txtModelo.setText(vehiculoEntity.getModelo());
                 txtColor.setText(vehiculoEntity.getColor());
                 txtAnho.setText(vehiculoEntity.getAnho());
-                 // txtIdCliente.setText(vehiculoEntity.getIdCliente()); 
+                txtIdCliente.setText(vehiculoEntity.getCliente().getCedula());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
             }
-
         }
-    }//GEN-LAST:event_tbnBuscarActionPerformed
+    }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String placa = txtPlaca.getText();
@@ -204,7 +202,7 @@ private ImageSize image = new ImageSize();
         String anho = txtAnho.getText();
         String cliente = txtIdCliente.getText();
 
-        if(placa.isBlank()|| marca.isBlank()|| modelo.isBlank() || anho.isBlank() || cliente.isBlank()) {
+        if (placa.isBlank() || marca.isBlank() || modelo.isBlank() || anho.isBlank() || cliente.isBlank()) {
             JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
@@ -223,7 +221,7 @@ private ImageSize image = new ImageSize();
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         String placa = JOptionPane.showInputDialog(null, "Ingrese su Placa:", "Eliminar Vehiculo", JOptionPane.QUESTION_MESSAGE);
@@ -245,7 +243,7 @@ private ImageSize image = new ImageSize();
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btnBorrarActionPerformed
+    }
 
     private void limpiarCampos() {
         txtPlaca.setText("");
