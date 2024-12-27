@@ -1,12 +1,17 @@
 
 package tallermecanico.view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
+import tallermecanico.controller.ProveedorController;
+import tallermecanico.entities.ProveedorEntity;
 import tallermecanico.view.components.ImageSize;
+import tallermecanico.view.components.ListarProveedor;
 
 public class ProveedorView extends javax.swing.JFrame {
 
     private ImageSize image = new ImageSize();
+    private ProveedorController proveedorController = new ProveedorController();
 
     public ProveedorView() {
         initComponents();
@@ -147,6 +152,11 @@ public class ProveedorView extends javax.swing.JFrame {
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
         btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 100, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 0, 350, 420));
@@ -170,16 +180,70 @@ public class ProveedorView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdProveedorActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBorrarActionPerformed
+        String id = JOptionPane.showInputDialog(null, "Ingrese su ID:", "Eliminar Proveedor", JOptionPane.QUESTION_MESSAGE);
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+        if (id != null && id.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(id != null) {
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el proveedor?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirmacion == JOptionPane.NO_OPTION) {
+                return;
+            }
+            try {
+                proveedorController.eliminarProveedor(id);
+                JOptionPane.showMessageDialog(null, "Proveedor Eliminado", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        String nombre = txtNombre.getText();
+        String telefono = txtTelefono.getText();
+        String correo = txtCorreo.getText();
+        String direccion = txtDireccion.getText();
+
+        if (nombre.isBlank() || telefono.isBlank() || correo.isBlank() || direccion.isBlank()) {
+            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        try {
+            ProveedorEntity proveedor = new ProveedorEntity();
+            proveedor.setNombre(nombre);
+            proveedor.setTelefono(telefono);
+            proveedor.setCorreo(correo);
+            proveedor.setDireccion(direccion);
+
+            ProveedorController controller = new ProveedorController();
+            controller.registrarProveedor(proveedor);
+
+            JOptionPane.showMessageDialog(null, "Dato Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
+            this.limpiarCampos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoActionPerformed
+        this.limpiarCampos();
+    }
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        ListarProveedor listarProveedor = new ListarProveedor();
+        listarProveedor.setVisible(true);
+    }
+
+    private void limpiarCampos() {
+        txtIdProveedor.setText("");
+        txtNombre.setText("");
+        txtTelefono.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
