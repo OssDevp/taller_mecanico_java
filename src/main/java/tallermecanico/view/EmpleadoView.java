@@ -181,9 +181,11 @@ public class EmpleadoView extends javax.swing.JFrame {
     //Buscar empleado
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {
         String cedula = JOptionPane.showInputDialog(null, "Ingrese la cedula del empleado", "Buscar empleado", JOptionPane.QUESTION_MESSAGE);
-        if (cedula.isBlank()) {
+        if (cedula != null && cedula.isBlank()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar la cedula del empleado", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
+        }
+
+        if (cedula != null && cedula.isBlank()) {
             try {
                 empleadoEntity = empleadoController.obtenerEmpleado(cedula);
                 txtIdEmpleado.setText(empleadoEntity.getCedula());
