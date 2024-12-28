@@ -1,6 +1,7 @@
 package tallermecanico.view;
 import javax.swing.*;
 
+import javax.swing.SpinnerNumberModel;
 import tallermecanico.controller.ProductoController;
 import tallermecanico.entities.ProductoEntity;
 import tallermecanico.view.components.ImageSize;
@@ -15,6 +16,7 @@ public class ProductoView extends javax.swing.JFrame {
   
     public ProductoView() {
         initComponents();
+        configurarModeloJSpinner();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -22,7 +24,7 @@ public class ProductoView extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -199,20 +201,20 @@ public class ProductoView extends javax.swing.JFrame {
         pack();
     }
 
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }
 
-    private void btnIrProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrProveedorActionPerformed
+    private void btnIrProveedorActionPerformed(java.awt.event.ActionEvent evt) {                                               
         ProveedorView proveedorView = new ProveedorView();
         proveedorView.setVisible(true);
     }
 
-    private void txtIdProveedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProveedor1ActionPerformed
+    private void txtIdProveedor1ActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
     }
 
-    private void btnIrStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrStockActionPerformed
+    private void btnIrStockActionPerformed(java.awt.event.ActionEvent evt) {                                           
         ListarProductos productos = new ListarProductos();
         productos.setVisible(true);
     }
@@ -300,6 +302,17 @@ public class ProductoView extends javax.swing.JFrame {
             }
         }
     }
+    
+    private void configurarModeloJSpinner() {
+        SpinnerNumberModel modelo = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
+        jSpinner1.setModel(modelo);
+    }
+    
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {                                       
+        //System.out.println("Valor actual del JSpinner: " + jSpinner1.getValue());
+    }
+
+    
 
     private void limpiarCampos() {
         txtIdProducto.setText("");
