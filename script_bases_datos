@@ -10,7 +10,7 @@ CREATE TABLE Clientes (
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(15),
     correo VARCHAR(100),
-    direccion TEXT
+    direccion TEXT,
     cedula VARCHAR(15) NOT NULL
 );
 
@@ -59,13 +59,13 @@ CREATE TABLE Ordenes (
     id_cliente INT,
     id_vehiculo INT,
     id_empleado INT,
-    id_servicio INT, -- Nueva columna para el ID del servicio
-    estado VARCHAR(30),
+    id_servicio INT,
+    estado enum('pendiente', 'finalizado') DEFAULT 'pendiente',
     costo_total DECIMAL(10,2),
     FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
     FOREIGN KEY (id_vehiculo) REFERENCES Vehiculos(id_vehiculo),
     FOREIGN KEY (id_empleado) REFERENCES Empleados(id_empleado),
-    FOREIGN KEY (id_servicio) REFERENCES Servicios(id_servicio) -- Nueva clave foránea
+    FOREIGN KEY (id_servicio) REFERENCES Servicios(id_servicio)
 );
 
 -- Crear la tabla Proveedores
@@ -88,7 +88,7 @@ CREATE TABLE Productos (
     FOREIGN KEY (id_proveedor) REFERENCES Proveedores(id_proveedor)
 );
 
--- Crear la tabla Facturas
+-- Crear la tabla Facturas (modificada)
 CREATE TABLE Facturas (
     id_factura INT AUTO_INCREMENT PRIMARY KEY,
     fecha_emision DATE,
@@ -99,13 +99,123 @@ CREATE TABLE Facturas (
     FOREIGN KEY (id_orden) REFERENCES Ordenes(id_orden)
 );
 
--- Crear la tabla DetalleFactura
-CREATE TABLE DetalleFactura (
-    id_detalle INT AUTO_INCREMENT PRIMARY KEY,
-    id_factura INT,
-    id_producto INT,
-    cantidad INT,
-    subtotal DECIMAL(10,2),
-    FOREIGN KEY (id_factura) REFERENCES Facturas(id_factura),
-    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
-);
+-- INSERTAR DATOS
+
+-- Insertar datos en Clientes
+INSERT INTO Clientes (nombre, telefono, correo, direccion, cedula) VALUES
+('Juan Pérez', '123-456-7890', 'juan.perez@email.com', 'Calle A #123', '1234567890'),
+('María Gómez', '987-654-3210', 'maria.gomez@email.com', 'Avenida B #456', '0987654321'),
+('Carlos Rodríguez', '555-123-4567', 'carlos.rodriguez@email.com', 'Carrera C #789', '5551234567'),
+('Laura Sánchez', '111-222-3333', 'laura.sanchez@email.com', 'Diagonal D #012', '1112223333'),
+('Pedro Martínez', '444-555-6666', 'pedro.martinez@email.com', 'Transversal E #345', '4445556666'),
+('Ana López', '777-888-9999', 'ana.lopez@email.com', 'Circular F #678', '7778889999'),
+('José García', '222-333-4444', 'jose.garcia@email.com', 'Calle G #901', '2223334444'),
+('Sofia Fernández', '666-777-8888', 'sofia.fernandez@email.com', 'Avenida H #234', '6667778888'),
+('David Díaz', '333-444-5555', 'david.diaz@email.com', 'Carrera I #567', '3334445555'),
+('Elena Ruiz', '888-999-0000', 'elena.ruiz@email.com', 'Diagonal J #890', '8889990000');
+
+-- Insertar datos en Vehiculos
+INSERT INTO Vehiculos (placa, marca, modelo, anio, color, id_cliente) VALUES
+('ABC-123', 'Toyota', 'Corolla', 2020, 'Rojo', 1),
+('DEF-456', 'Honda', 'Civic', 2018, 'Azul', 2),
+('GHI-789', 'Ford', 'Mustang', 2022, 'Negro', 3),
+('JKL-012', 'Nissan', 'Sentra', 2019, 'Gris', 4),
+('MNO-345', 'Chevrolet', 'Camaro', 2021, 'Blanco', 5),
+('PQR-678', 'BMW', 'X5', 2023, 'Plata', 6),
+('STU-901', 'Mercedes-Benz', 'C-Class', 2017, 'Verde', 7),
+('VWX-234', 'Audi', 'A4', 2020, 'Amarillo', 8),
+('YZA-567', 'Hyundai', 'Tucson', 2016, 'Naranja', 9),
+('BCD-890', 'Kia', 'Sportage', 2024, 'Morado', 10);
+
+-- Insertar datos en Servicios
+INSERT INTO Servicios (nombre, descripcion, costo) VALUES
+('Cambio de aceite', 'Reemplazo de aceite y filtro', 50.00),
+('Alineación y balanceo', 'Ajuste de la dirección y balanceo de ruedas', 80.00),
+('Revisión de frenos', 'Inspección y reparación de frenos', 120.00),
+('Mantenimiento de motor', 'Revisión y ajuste del motor', 150.00),
+('Cambio de neumáticos', 'Reemplazo de neumáticos', 200.00),
+('Reparación de transmisión', 'Reparación o reemplazo de la transmisión', 300.00),
+('Diagnóstico electrónico', 'Diagnóstico de fallas electrónicas', 75.00),
+('Cambio de batería', 'Reemplazo de la batería', 100.00),
+('Revisión de suspensión', 'Inspección y reparación de la suspensión', 90.00),
+('Lavado y engrasado', 'Lavado exterior e interior y engrasado del chasis', 60.00);
+
+-- Insertar datos en Cargos
+INSERT INTO Cargos (descripcion, sueldo) VALUES
+('Mecánico', 2500.00),
+('Jefe de taller', 3500.00),
+('Recepcionista', 1800.00),
+('Electricista automotriz', 2800.00),
+('Pintor', 2200.00),
+('Ayudante de mecánico', 1500.00),
+('Gerente', 4000.00),
+('Asesor de servicio', 2000.00),
+('Administrativo', 1700.00),
+('Cajero', 1600.00);
+
+-- Insertar datos en Empleados
+INSERT INTO Empleados (nombre, id_cargo, habilidades, cedula) VALUES
+('Ricardo López', 1, 'Mecánica general, motores', '1234567891'),
+('Patricia Sánchez', 2, 'Gestión de taller, liderazgo', '9876543219'),
+('Andrés Ramírez', 3, 'Atención al cliente, facturación', '5554443332'),
+('Carolina Pérez', 4, 'Electricidad automotriz, diagnóstico', '1119998887'),
+('Javier Martínez', 5, 'Pintura automotriz, chapistería', '4448887776'),
+('Isabel Gómez', 6, 'Apoyo en mecánica, limpieza', '7773332221'),
+('Roberto Díaz', 7, 'Administración, finanzas', '2227776665'),
+('Fernanda Rodríguez', 8, 'Ventas, asesoramiento técnico', '6662221110'),
+('Manuel Fernández', 9, 'Contabilidad, recursos humanos', '3336665554'),
+('Elena López', 10, 'Manejo de caja, atención al público', '8881110009');
+
+-- Insertar datos en Ordenes
+INSERT INTO Ordenes (fecha_ingreso, fecha_finalizacion, id_cliente, id_vehiculo, id_empleado, id_servicio, estado, costo_total) VALUES
+('2024-01-10', '2024-01-12', 1, 1, 1, 1, 'finalizado', 60.00),
+('2024-01-15', '2024-01-17', 2, 2, 2, 3, 'pendiente', 150.00),
+('2024-01-18', '2024-01-19', 3, 3, 1, 2, 'finalizado', 90.00),
+('2024-01-22', '2024-01-23', 4, 4, 4, 4, 'pendiente', 180.00),
+('2024-01-25', '2024-01-27', 5, 5, 5, 5, 'finalizado', 220.00),
+('2024-01-29', '2024-02-01', 6, 6, 1, 6, 'pendiente', 350.00),
+('2024-02-01', '2024-02-02', 7, 7, 2, 7, 'finalizado', 85.00),
+('2024-02-05', '2024-02-06', 8, 8, 3, 8, 'pendiente', 120.00),
+('2024-02-08', '2024-02-09', 9, 9, 4, 9, 'finalizado', 100.00),
+('2024-02-12', '2024-02-14', 10, 10, 5, 10, 'pendiente', 70.00);
+
+-- Insertar datos en Proveedores
+INSERT INTO Proveedores (nombre, telefono, correo, direccion) VALUES
+('Proveedor A', '111-111-1111', 'proveedor.a@email.com', 'Calle Principal #10'),
+('Proveedor B', '222-222-2222', 'proveedor.b@email.com', 'Avenida Central #20'),
+('Proveedor C', '333-333-3333', 'proveedor.c@email.com', 'Carrera Norte #30'),
+('Proveedor D', '444-444-4444', 'proveedor.d@email.com', 'Calle Sur #40'),
+('Proveedor E', '555-555-5555', 'proveedor.e@email.com', 'Avenida Este #50'),
+('Proveedor F', '666-666-6666', 'proveedor.f@email.com', 'Carrera Oeste #60'),
+('Proveedor G', '777-777-7777', 'proveedor.g@email.com', 'Calle 1 #70'),
+('Proveedor H', '888-888-8888', 'proveedor.h@email.com', 'Avenida 2 #80'),
+('Proveedor I', '999-999-9999', 'proveedor.i@email.com', 'Carrera 3 #90'),
+('Proveedor J', '000-000-0000', 'proveedor.j@email.com', 'Calle 4 #00');
+
+-- Insertar datos en Productos (10 registros)
+INSERT INTO Productos (nombre, descripcion, precio_unitario, stock, id_proveedor) VALUES
+('Aceite de motor 10W30', 'Aceite multigrado para motores a gasolina', 25.50, 100, 1),
+('Filtro de aceite', 'Filtro para retener impurezas del aceite', 8.75, 150, 2),
+('Pastillas de freno', 'Juego de pastillas para frenos delanteros', 45.00, 80, 3),
+('Neumático 195/65R15', 'Neumático radial para automóviles compactos', 75.00, 50, 4),
+('Batería para automóvil', 'Batería de 12 voltios para arranque', 120.00, 30, 5),
+('Bujías de encendido', 'Juego de bujías para motor de 4 cilindros', 12.50, 120, 6),
+('Líquido de frenos', 'Líquido hidráulico para sistema de frenos', 15.00, 90, 7),
+('Filtro de aire', 'Filtro para retener impurezas del aire que ingresa al motor', 10.00, 110, 8),
+('Amortiguador delantero', 'Amortiguador hidráulico para suspensión delantera', 60.00, 60, 9),
+('Refrigerante', 'Líquido refrigerante para motor', 20.00, 75, 10);
+
+-- Insertar datos en Facturas
+INSERT INTO Facturas (fecha_emision, id_cliente, id_orden, total) VALUES
+('2024-01-12', 1, 1, 60.00),
+('2024-01-19', 3, 3, 90.00),
+('2024-01-27', 5, 5, 220.00),
+('2024-02-02', 7, 7, 85.00),
+('2024-02-09', 9, 9, 100.00),
+('2024-02-15', 2, 2, 160.00),
+('2024-02-20', 4, 4, 190.00),
+('2024-02-25', 6, 6, 360.00),
+('2024-03-01', 8, 8, 130.00),
+('2024-03-05', 10, 10, 80.00);
+
+-- Fin del script

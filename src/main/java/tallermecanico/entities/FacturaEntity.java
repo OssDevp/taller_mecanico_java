@@ -33,7 +33,4 @@ public class FacturaEntity {
     @Column(name = "total", precision = 10, scale = 2)
     private BigDecimal total;
 
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
-    private Set<DetalleFacturaEntity> detalleFacturas = new LinkedHashSet<>();
-
 }

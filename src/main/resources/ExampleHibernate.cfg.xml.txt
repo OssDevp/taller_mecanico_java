@@ -1,11 +1,9 @@
 # Crear un archivo llamado Hibernate.cfg.xml en la carpeta src/main/resources
 # Copiar el contenido de este archivo en el archivo creado y reemplazar los valores de las propiedades
-# {URL} = URL de la base de datos
-# {DRIVER} = Clase del driver de la base de datos
 # {USER} = Usuario de la base de datos
 # {PASSWORD} = Contraseña de la base de datos
-# {DIALECT} = Dialecto de la base de datos
 # Guardar el archivo
+# Borrar este archivo
 
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
@@ -14,7 +12,7 @@
 <hibernate-configuration>
   <session-factory>
     <!-- Configuración de la conexión -->
-    <property name="hibernate.connection.url">{URL}</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tallermecanico</property>
     <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="hibernate.connection.username">{USER}</property>
     <property name="hibernate.connection.password">{PASSWORD}</property>
@@ -35,7 +33,6 @@
     <mapping class="tallermecanico.entities.VehiculoEntity"/>
     <mapping class="tallermecanico.entities.EmpleadoEntity"/>
     <mapping class="tallermecanico.entities.CargoEntity"/>
-    <mapping class="tallermecanico.entities.DetalleFacturaEntity"/>
     <mapping class="tallermecanico.entities.FacturaEntity"/>
     <mapping class="tallermecanico.entities.OrdenEntity"/>
     <mapping class="tallermecanico.entities.ProductoEntity"/>

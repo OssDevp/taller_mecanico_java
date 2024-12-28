@@ -35,7 +35,5 @@ public class ProductoEntity {
     @JoinColumn(name = "id_proveedor")
     private ProveedorEntity proveedor;
 
-    @OneToMany(mappedBy = "producto")
-    private List<DetalleFacturaEntity> detalleFacturas = new ArrayList<>();
 
 }
