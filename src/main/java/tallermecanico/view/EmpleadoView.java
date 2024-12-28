@@ -8,6 +8,7 @@ import tallermecanico.controller.EmpleadoController;
 import tallermecanico.entities.CargoEntity;
 import tallermecanico.entities.EmpleadoEntity;
 import tallermecanico.view.components.ImageSize;
+import tallermecanico.view.components.ListarEmpleadosView;
 
 import java.util.List;
 
@@ -250,7 +251,8 @@ public class EmpleadoView extends javax.swing.JFrame {
     }
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {
-
+        ListarEmpleadosView listarEmpleadosView = new ListarEmpleadosView();
+        listarEmpleadosView.setVisible(true);
     }
 
     private void cargarCargosCombo() {
