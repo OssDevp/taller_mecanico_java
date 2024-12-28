@@ -1,6 +1,7 @@
 package tallermecanico.view;
 
 import tallermecanico.view.components.ImageSize;
+import tallermecanico.view.components.OrdenEstado;
 
 public class MenuView extends javax.swing.JFrame {
 
@@ -95,6 +96,11 @@ public class MenuView extends javax.swing.JFrame {
         btnEstadoOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEstadoOrden.setFocusCycleRoot(true);
         btnEstadoOrden.setFocusPainted(false);
+        btnEstadoOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstadoOrdenActionPerformed(evt);
+            }
+        });
         jPanelPrincipal.add(btnEstadoOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 170, 70));
 
         jPanelContainer.add(jPanelPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 500));
@@ -200,15 +206,20 @@ public class MenuView extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
+    private void btnEstadoOrdenActionPerformed(java.awt.event.ActionEvent evt) {
+        OrdenEstado ordenEstado = new OrdenEstado();
+        ordenEstado.setVisible(true);
+    }
+
+    private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         clienteView.setVisible(true);
-    }//GEN-LAST:event_btnRegistrarClienteActionPerformed
+    }
 
-    private void btnRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarOrdenActionPerformed
+    private void btnRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         ordenView.setVisible(true);
-    }//GEN-LAST:event_btnRegistrarOrdenActionPerformed
+    }
 
     private void jMnCargoActionPerformed(java.awt.event.ActionEvent evt) {                                         
         CargoView cargoView = new CargoView();
