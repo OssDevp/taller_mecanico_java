@@ -13,6 +13,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class OrdenView extends javax.swing.JFrame {
@@ -20,8 +21,8 @@ public class OrdenView extends javax.swing.JFrame {
     private final ClienteController clienteController;
     private final VehiculoController vehiculoController;
     private final EmpleadoController empleadoController;
+    private final OrdenController ordenController;
     private final ServicioController servicioController;
-    private final OrdenController ordenController = new OrdenController();
     private BigDecimal costoDecimal;
     private ImageSize image = new ImageSize();
     
@@ -32,7 +33,9 @@ public class OrdenView extends javax.swing.JFrame {
         clienteController = new ClienteController();
         vehiculoController = new VehiculoController();
         empleadoController = new EmpleadoController();
+        ordenController = new OrdenController();
         servicioController = new ServicioController();
+        cargarServiciosCombo();
         setResizable(false);
         setLocationRelativeTo(null);
         addPlaceholder(txtFechaIngreso, "aaaa/mm/dd");
@@ -61,7 +64,6 @@ public class OrdenView extends javax.swing.JFrame {
         txtIdCliente = new javax.swing.JTextField();
         txtidVehiculo = new javax.swing.JTextField();
         txtIdEmpleado = new javax.swing.JTextField();
-        txtIdServicio = new javax.swing.JTextField();
         txtCostoTotal = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
@@ -73,6 +75,7 @@ public class OrdenView extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         btnListar = new javax.swing.JButton();
         btnEditar1 = new javax.swing.JButton();
+        comboBoxServicio = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,45 +87,44 @@ public class OrdenView extends javax.swing.JFrame {
         lblImage.setText("jLabel11");
         jPanel2.add(lblImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 230, 363));
 
-        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 303, 427));
+        jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 303, 450));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Fecha de Ingreso:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         jLabel3.setText("Fecha de Finalizacion:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
 
         jLabel4.setText("Cedula Cliente");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         jLabel5.setText("Placa Vehiculo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
 
         jLabel6.setText("Cedula Empleado");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         jLabel7.setText("Servicio");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, -1));
 
         jLabel8.setText("Estado:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         jLabel9.setText("Costo Total:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
-        jPanel1.add(txtFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 170, -1));
-        jPanel1.add(txtFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 171, -1));
-        jPanel1.add(txtIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 130, -1));
-        jPanel1.add(txtidVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 130, -1));
-        jPanel1.add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 130, -1));
-        jPanel1.add(txtIdServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 130, -1));
-        jPanel1.add(txtCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 171, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
+        jPanel1.add(txtFechaIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 170, -1));
+        jPanel1.add(txtFechaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 170, -1));
+        jPanel1.add(txtIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 130, -1));
+        jPanel1.add(txtidVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 130, -1));
+        jPanel1.add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 130, -1));
+        jPanel1.add(txtCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 171, -1));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Orden");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 360, 67));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 360, 67));
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -136,7 +138,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 80, 30));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 80, 30));
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -151,7 +153,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 80, 30));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 80, 30));
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -167,7 +169,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 80, 30));
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 80, 30));
 
         btnIrCliente.setBackground(new java.awt.Color(26, 41, 74));
         btnIrCliente.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -180,7 +182,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnIrClienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIrCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 25, 20));
+        jPanel1.add(btnIrCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 25, 20));
 
         btnIrVehiculo.setBackground(new java.awt.Color(26, 41, 74));
         btnIrVehiculo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -193,7 +195,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnIrVehiculoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIrVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 25, 20));
+        jPanel1.add(btnIrVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 25, 20));
 
         btnIrEmpleado.setBackground(new java.awt.Color(26, 41, 74));
         btnIrEmpleado.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -206,11 +208,11 @@ public class OrdenView extends javax.swing.JFrame {
                 btnIrEmpleadoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnIrEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 25, 20));
+        jPanel1.add(btnIrEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 25, 20));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Trabajando", "Finalizado" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Finalizado" }));
         jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, -1));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 170, -1));
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
         btnListar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -226,7 +228,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnListarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 80, 30));
+        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 350, 30));
 
         btnEditar1.setBackground(new java.awt.Color(26, 41, 74));
         btnEditar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -242,9 +244,11 @@ public class OrdenView extends javax.swing.JFrame {
                 btnEditar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 80, 30));
+        jPanel1.add(btnEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 80, 30));
 
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 440, 427));
+        jPanel1.add(comboBoxServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 170, -1));
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 440, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -268,9 +272,8 @@ public class OrdenView extends javax.swing.JFrame {
         String vehiculo = txtidVehiculo.getText();
         String empleado = txtIdEmpleado.getText();
         String costoTotal = txtCostoTotal.getText();
-
-        String servicio = txtIdServicio.getText();
-        String estado = jComboBox2.getSelectedItem().toString();
+        String servicio = comboBoxServicio.getSelectedItem().toString();
+        String estado = jComboBox2.getSelectedItem().toString().toLowerCase();
 
         if (fechaIngreso.isEmpty() || fechaFinal.isEmpty() || cliente.isEmpty() || vehiculo.isEmpty() || empleado.isEmpty() || servicio.isEmpty() || costoTotal.isEmpty() || estado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
@@ -284,13 +287,13 @@ public class OrdenView extends javax.swing.JFrame {
             ClienteEntity clienteEntity = clienteController.obtenerCliente(cliente);
             VehiculoEntity vehiculoEntity = vehiculoController.obtenerVehiculo(vehiculo);
             EmpleadoEntity empleadoEntity = empleadoController.obtenerEmpleado(empleado);
-            ServicioEntity servicioEntity = servicioController.obtenerServicio(servicio);
+            ServicioEntity servicioEntity = servicioController.obtenerServicioPorNombre(servicio);
             orden.setFechaIngreso(LocalDate.parse(fechaIngreso));
             orden.setFechaFinalizacion(LocalDate.parse(fechaFinal));
-            orden.setIdCliente(clienteEntity);
-            orden.setIdVehiculo(vehiculoEntity);
-            orden.setIdEmpleado(empleadoEntity);
-            orden.setIdServicio(servicioEntity);
+            orden.setCliente(clienteEntity);
+            orden.setVehiculo(vehiculoEntity);
+            orden.setEmpleado(empleadoEntity);
+            orden.setServicio(servicioEntity);
             orden.setCostoTotal(costoDecimal);
             orden.setEstado(estado);
 
@@ -302,24 +305,11 @@ public class OrdenView extends javax.swing.JFrame {
         }
     }
 
-    private void btnIrClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrClienteActionPerformed
-        ClienteView cliente = new ClienteView();
-        cliente.setVisible(true);
-    }//GEN-LAST:event_btnIrClienteActionPerformed
 
-    private void btnIrVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrVehiculoActionPerformed
-        VehiculoView vehiculoView = new VehiculoView();
-        vehiculoView.setVisible(true);
-    }//GEN-LAST:event_btnIrVehiculoActionPerformed
 
-    private void btnIrEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrEmpleadoActionPerformed
-        EmpleadoView empleadoView = new EmpleadoView();
-        empleadoView.setVisible(true);
-    }//GEN-LAST:event_btnIrEmpleadoActionPerformed
-
-    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditar1ActionPerformed
+    }
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                         
         this.limpiarCampos();
@@ -354,13 +344,41 @@ public class OrdenView extends javax.swing.JFrame {
         }
     }
 
+    private void btnIrClienteActionPerformed(java.awt.event.ActionEvent evt) {
+        ClienteView cliente = new ClienteView();
+        cliente.setVisible(true);
+    }
+
+    private void btnIrVehiculoActionPerformed(java.awt.event.ActionEvent evt) {
+        VehiculoView vehiculoView = new VehiculoView();
+        vehiculoView.setVisible(true);
+    }
+
+    private void btnIrEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {
+        EmpleadoView empleadoView = new EmpleadoView();
+        empleadoView.setVisible(true);
+    }
+
+    private void cargarServiciosCombo() {
+        ServicioController servicioController = new ServicioController();
+        List<ServicioEntity> servicios = servicioController.obtenerServicios();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+
+        for (ServicioEntity servicio: servicios) {
+            model.addElement(servicio.getNombre());
+        }
+
+        comboBoxServicio.setModel(model);
+
+    }
+
     private void limpiarCampos() {
         txtFechaIngreso.setText("");
         txtFechaFinal.setText("");
         txtIdCliente.setText("");
         txtidVehiculo.setText("");
         txtIdEmpleado.setText("");
-        txtIdServicio.setText("");
+        comboBoxServicio.setSelectedIndex(0);
         txtCostoTotal.setText("");
     }
 
@@ -396,6 +414,7 @@ public class OrdenView extends javax.swing.JFrame {
     private javax.swing.JButton btnIrVehiculo;
     private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> comboBoxServicio;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -415,7 +434,6 @@ public class OrdenView extends javax.swing.JFrame {
     private javax.swing.JTextField txtFechaIngreso;
     private javax.swing.JTextField txtIdCliente;
     private javax.swing.JTextField txtIdEmpleado;
-    private javax.swing.JTextField txtIdServicio;
     private javax.swing.JTextField txtidVehiculo;
     // End of variables declaration//GEN-END:variables
 }

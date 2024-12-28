@@ -1,5 +1,6 @@
 package tallermecanico.DAO;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import tallermecanico.config.HibernateUtil;
@@ -11,7 +12,14 @@ public class OrdenDAO {
     // LISTAR TODOS
     public List<OrdenEntity> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM OrdenEntity ", OrdenEntity.class).list();
+            List<OrdenEntity> ordenes = session.createQuery("FROM OrdenEntity ", OrdenEntity.class).list();
+            for (OrdenEntity orden : ordenes) {
+                Hibernate.initialize(orden.getCliente());
+                Hibernate.initialize(orden.getVehiculo());
+                Hibernate.initialize(orden.getEmpleado());
+                Hibernate.initialize(orden.getServicio());
+            }
+            return ordenes;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -21,7 +29,14 @@ public class OrdenDAO {
     // OBTENER POR ID
     public OrdenEntity obtenerPorId(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.get(OrdenEntity.class, id);
+            OrdenEntity orden = session.get(OrdenEntity.class, id);
+            if (orden != null) {
+                Hibernate.initialize(orden.getCliente());
+                Hibernate.initialize(orden.getVehiculo());
+                Hibernate.initialize(orden.getEmpleado());
+                Hibernate.initialize(orden.getServicio());
+            }
+            return orden;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

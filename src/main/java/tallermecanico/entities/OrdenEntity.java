@@ -3,11 +3,10 @@ package tallermecanico.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,19 +26,19 @@ public class OrdenEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente")
-    private ClienteEntity idCliente;
+    private ClienteEntity cliente;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_vehiculo")
-    private VehiculoEntity idVehiculo;
+    private VehiculoEntity vehiculo;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_empleado")
-    private EmpleadoEntity idEmpleado;
+    private EmpleadoEntity empleado;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_servicio")
-    private ServicioEntity idServicio;
+    private ServicioEntity servicio;
 
     @Column(name = "estado", length = 30)
     private String estado;
@@ -47,7 +46,7 @@ public class OrdenEntity {
     @Column(name = "costo_total", precision = 10, scale = 2)
     private BigDecimal costoTotal;
 
-    @OneToMany(mappedBy = "idOrden")
-    private Set<FacturaEntity> facturas = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "orden")
+    private List<FacturaEntity> facturas = new ArrayList<>();
 
 }

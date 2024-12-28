@@ -4,7 +4,9 @@ package tallermecanico.view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import tallermecanico.controller.ClienteController;
 import tallermecanico.controller.VehiculoController;
+import tallermecanico.entities.ClienteEntity;
 import tallermecanico.entities.VehiculoEntity;
 import tallermecanico.view.components.ImageSize;
 
@@ -12,11 +14,14 @@ import tallermecanico.view.components.ImageSize;
 public class VehiculoView extends javax.swing.JFrame {
 
     private final VehiculoController vehiculoController;
+    private final ClienteController clienteController;
     private VehiculoEntity vehiculoEntity;
+
 
     public VehiculoView() {
         initComponents();
         vehiculoController = new VehiculoController();
+        clienteController = new ClienteController();
         setTitle("Vehiculo");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -187,7 +192,7 @@ public class VehiculoView extends javax.swing.JFrame {
                 txtMarca.setText(vehiculoEntity.getMarca());
                 txtModelo.setText(vehiculoEntity.getModelo());
                 txtColor.setText(vehiculoEntity.getColor());
-                txtAnho.setText(vehiculoEntity.getAnho());
+                txtAnho.setText(String.valueOf(vehiculoEntity.getAnio()));
                 txtIdCliente.setText(vehiculoEntity.getCliente().getCedula());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
@@ -199,19 +204,20 @@ public class VehiculoView extends javax.swing.JFrame {
         String placa = txtPlaca.getText();
         String marca = txtMarca.getText();
         String modelo = txtModelo.getText();
-        String anho = txtAnho.getText();
-        String cliente = txtIdCliente.getText();
+        Integer anho = Integer.valueOf(txtAnho.getText());
+        String clienteText = txtIdCliente.getText();
 
-        if (placa.isBlank() || marca.isBlank() || modelo.isBlank() || anho.isBlank() || cliente.isBlank()) {
+        if (placa.isBlank() || marca.isBlank() || modelo.isBlank() || txtAnho.getText().isBlank() || clienteText.isBlank()) {
             JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
+                ClienteEntity cliente = clienteController.obtenerCliente(clienteText);
                 vehiculoEntity = new VehiculoEntity();
                 vehiculoEntity.setPlaca(placa);
                 vehiculoEntity.setMarca(marca);
                 vehiculoEntity.setModelo(modelo);
-                vehiculoEntity.setAnho(anho);
-                vehiculoEntity.setIdCliente(cliente);
+                vehiculoEntity.setAnio(anho);
+                vehiculoEntity.setCliente(cliente);
 
                 vehiculoController.registrarVehiculo(vehiculoEntity);
 

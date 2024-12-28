@@ -18,11 +18,11 @@ public class DetalleFacturaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_factura")
-    private FacturaEntity idFactura;
+    private FacturaEntity factura;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto")
-    private ProductoEntity idProducto;
+    private ProductoEntity producto;
 
     @Column(name = "cantidad")
     private Integer cantidad;

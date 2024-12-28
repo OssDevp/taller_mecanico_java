@@ -3,11 +3,13 @@ package tallermecanico.DAO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import tallermecanico.config.HibernateUtil;
+import tallermecanico.entities.CargoEntity;
 import tallermecanico.entities.ServicioEntity;
 
 import java.util.List;
 
 public class ServicioDAO {
+
     // LISTAR TODOS
     public List<ServicioEntity> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -22,6 +24,18 @@ public class ServicioDAO {
     public ServicioEntity obtenerPorId(Integer id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(ServicioEntity.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ServicioEntity obtenerPorNombre(String nombre) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM ServicioEntity s WHERE s.nombre = :nombre";
+            return session.createQuery(hql, ServicioEntity.class)
+                    .setParameter("nombre", nombre)
+                    .uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

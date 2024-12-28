@@ -40,15 +40,15 @@ public class ListarOrdenes extends javax.swing.JFrame {
 
             for (OrdenEntity orden : ordenes) {
                 Object[] fila = {
-                        orden.getId(),
-                        orden.getCostoTotal(),
-                        orden.getEstado(),
-                        orden.getFechaFinalizacion() != null ? orden.getFechaFinalizacion().format(formatter) : "", // Formatear fecha
-                        orden.getFechaIngreso() != null ? orden.getFechaIngreso().format(formatter) : "",       // Formatear fecha
-                        orden.getIdCliente(),
-                        orden.getIdEmpleado(),
-                        orden.getIdServicio(),
-                        orden.getIdVehiculo()
+//                        orden.getId(),
+//                        orden.getCostoTotal(),
+//                        orden.getEstado(),
+//                        orden.getFechaFinalizacion() != null ? orden.getFechaFinalizacion().format(formatter) : "", // Formatear fecha
+//                        orden.getFechaIngreso() != null ? orden.getFechaIngreso().format(formatter) : "",       // Formatear fecha
+//                        orden.getIdCliente(),
+//                        orden.getIdEmpleado(),
+//                        orden.getIdServicio(),
+//                        orden.getIdVehiculo()
                 };
                 modeloTabla.addRow(fila);
             }

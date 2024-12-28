@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -33,13 +35,13 @@ public class ClienteEntity {
     @Column(name = "cedula", nullable = false, length = 45)
     private String cedula;
 
-    @OneToMany(mappedBy = "idCliente", cascade = CascadeType.ALL)
-    private Set<FacturaEntity> facturas = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "idCliente", cascade = CascadeType.ALL)
-    private Set<OrdenEntity> ordenes = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<FacturaEntity> facturas = new ArrayList<>();
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private Set<VehiculoEntity> vehiculos = new LinkedHashSet<>();
+    private List<OrdenEntity> ordenes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<VehiculoEntity> vehiculos = new ArrayList<>();
 
 }

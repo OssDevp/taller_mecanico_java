@@ -28,7 +28,7 @@ public class EmpleadoEntity {
     @Column(name = "habilidades")
     private String habilidades;
 
-    @OneToMany(mappedBy = "idEmpleado")
+    @OneToMany(mappedBy = "empleado")
     private List<OrdenEntity> ordenes = new ArrayList<>();
 
     @Column(name = "cedula", nullable = false, length = 45)

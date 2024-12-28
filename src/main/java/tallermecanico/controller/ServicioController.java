@@ -43,6 +43,15 @@ public class ServicioController {
         return servicio;
     }
 
+    public ServicioEntity obtenerServicioPorNombre(String nombre) {
+        servicioDAO = new ServicioDAO();
+        ServicioEntity servicio = servicioDAO.obtenerPorNombre(nombre);
+        if (servicio == null) {
+            throw new RuntimeException("El servicio no se encuentra registrado");
+        }
+        return servicio;
+    }
+
     public void eliminarServicio(String id) {
         servicioDAO = new ServicioDAO();
         if (servicioDAO.obtenerPorId(Integer.valueOf(id)) == null) {

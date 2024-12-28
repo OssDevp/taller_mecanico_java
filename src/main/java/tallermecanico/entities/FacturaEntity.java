@@ -24,16 +24,16 @@ public class FacturaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente")
-    private ClienteEntity idCliente;
+    private ClienteEntity cliente;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_orden")
-    private OrdenEntity idOrden;
+    private OrdenEntity orden;
 
     @Column(name = "total", precision = 10, scale = 2)
     private BigDecimal total;
 
-    @OneToMany(mappedBy = "idFactura")
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
     private Set<DetalleFacturaEntity> detalleFacturas = new LinkedHashSet<>();
 
 }
