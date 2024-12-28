@@ -87,19 +87,19 @@ public class ProveedorView extends javax.swing.JFrame {
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 420));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 140, -1));
-        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 140, -1));
-        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 140, -1));
-        jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 140, -1));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 140, -1));
+        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 140, -1));
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 140, -1));
+        jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 140, -1));
 
         jLabel7.setText("Proveedor");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 56));
 
         jLabel8.setText("Id Proveedor");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
 
         jLabel9.setText("Nombre");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -110,10 +110,10 @@ public class ProveedorView extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 100, -1));
+        jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 100, -1));
 
         jLabel10.setText("Telefono");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -124,10 +124,10 @@ public class ProveedorView extends javax.swing.JFrame {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 380, 100, -1));
+        jPanel2.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 100, -1));
 
         jLabel11.setText("Correo");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -138,26 +138,28 @@ public class ProveedorView extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel2.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 100, -1));
+        jPanel2.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 100, -1));
 
         jLabel12.setText("Direccion");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
 
         txtIdProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdProveedorActionPerformed(evt);
             }
         });
-        jPanel2.add(txtIdProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 140, -1));
+        jPanel2.add(txtIdProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 140, -1));
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
+        btnListar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnListar.setForeground(new java.awt.Color(204, 204, 204));
         btnListar.setText("Listar");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 100, -1));
+        jPanel2.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 100, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 0, 350, 420));
 
@@ -179,7 +181,7 @@ public class ProveedorView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdProveedorActionPerformed
 
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String id = JOptionPane.showInputDialog(null, "Ingrese su ID:", "Eliminar Proveedor", JOptionPane.QUESTION_MESSAGE);
 
         if (id != null && id.isBlank()) {
@@ -228,11 +230,11 @@ public class ProveedorView extends javax.swing.JFrame {
         }
     }
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                         
         this.limpiarCampos();
     }
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         ListarProveedor listarProveedor = new ListarProveedor();
         listarProveedor.setVisible(true);
     }
