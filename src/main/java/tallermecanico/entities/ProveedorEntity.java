@@ -29,7 +29,7 @@ public class ProveedorEntity {
     @Column(name = "direccion")
     private String direccion;
 
-    @OneToMany(mappedBy = "idProveedor")
+    @OneToMany(mappedBy = "proveedor")
     private List<ProductoEntity> productos = new ArrayList<>();
 
 }

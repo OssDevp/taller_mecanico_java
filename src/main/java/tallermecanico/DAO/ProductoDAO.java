@@ -1,5 +1,6 @@
 package tallermecanico.DAO;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import tallermecanico.config.HibernateUtil;
@@ -11,7 +12,11 @@ public class ProductoDAO {
     // LISTAR TODOS
     public List<ProductoEntity> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM ProductoEntity ", ProductoEntity.class).list();
+            List<ProductoEntity> productos = session.createQuery("FROM ProductoEntity ", ProductoEntity.class).list();
+            for (ProductoEntity producto : productos) {
+                Hibernate.initialize(producto.getProveedor());
+            }
+            return productos;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

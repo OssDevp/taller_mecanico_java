@@ -1,14 +1,12 @@
-//TODO: ¿Aqui va un package de tallermecanico.view.components?
 package tallermecanico.view;
-
 import javax.swing.*;
 
 import tallermecanico.controller.ProductoController;
 import tallermecanico.entities.ProductoEntity;
 import tallermecanico.view.components.ImageSize;
+import tallermecanico.view.components.ListarProductos;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class ProductoView extends javax.swing.JFrame {
 
@@ -199,25 +197,25 @@ public class ProductoView extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioActionPerformed
+    }
 
     private void btnIrProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrProveedorActionPerformed
         ProveedorView proveedorView = new ProveedorView();
         proveedorView.setVisible(true);
-    }//GEN-LAST:event_btnIrProveedorActionPerformed
+    }
 
     private void txtIdProveedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProveedor1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdProveedor1ActionPerformed
+    }
 
     private void btnIrStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrStockActionPerformed
-        //ListarProductos productos = new ListarProductos();
-        //productos.setVisible(true);
-    }//GEN-LAST:event_btnIrStockActionPerformed
+        ListarProductos productos = new ListarProductos();
+        productos.setVisible(true);
+    }
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         String idProducto = txtIdProducto.getText();
@@ -296,7 +294,7 @@ public class ProductoView extends javax.swing.JFrame {
                 txtNombre.setText(producto.getNombre());
                 txtDescripcion.setText(producto.getDescripcion());
                 txtPrecio.setText(producto.getPrecioUnitario().toString());
-                txtIdProveedor1.setText(producto.getIdProveedor().toString());
+                txtIdProveedor1.setText(producto.getProveedor().getId().toString());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
