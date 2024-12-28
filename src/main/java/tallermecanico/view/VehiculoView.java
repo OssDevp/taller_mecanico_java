@@ -178,7 +178,7 @@ public class VehiculoView extends javax.swing.JFrame {
     private void tbnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
         String placa = JOptionPane.showInputDialog(null, "Ingrese su placa:", "Buscar Vehiculo", JOptionPane.QUESTION_MESSAGE);
 
-        if (placa.isBlank()) {
+        if (placa != null && placa.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
@@ -226,7 +226,7 @@ public class VehiculoView extends javax.swing.JFrame {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         String placa = JOptionPane.showInputDialog(null, "Ingrese su Placa:", "Eliminar Vehiculo", JOptionPane.QUESTION_MESSAGE);
 
-        if (placa.isBlank()) {
+        if (placa != null && placa.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
 

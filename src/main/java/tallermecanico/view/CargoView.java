@@ -168,7 +168,7 @@ public class CargoView extends javax.swing.JFrame {
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         String descripcion = JOptionPane.showInputDialog(null, "Ingrese la descripcion del cargo:", "Editar Cargo", JOptionPane.QUESTION_MESSAGE);
 
-        if (descripcion.isBlank()) {
+        if (descripcion != null  && descripcion.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
             try {
@@ -185,7 +185,7 @@ public class CargoView extends javax.swing.JFrame {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         String descripcion = JOptionPane.showInputDialog(null, "Ingrese el Cargo:", "Eliminar Cargo", JOptionPane.QUESTION_MESSAGE);
 
-        if (descripcion.isBlank()) {
+        if (descripcion != null && descripcion.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
 

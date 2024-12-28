@@ -204,7 +204,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         String cedula = JOptionPane.showInputDialog(null, "Ingrese su Cedula:", "Eliminar Cliente", JOptionPane.QUESTION_MESSAGE);
 
-        if (cedula.isBlank()) {
+        if (cedula != null && cedula.isBlank()) {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         } else {
 
@@ -250,7 +250,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     }
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
     }
 
     private void cargarCargosCombo() {
