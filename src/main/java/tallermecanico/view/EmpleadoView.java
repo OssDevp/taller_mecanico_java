@@ -187,22 +187,30 @@ public class EmpleadoView extends javax.swing.JFrame {
     //Buscar empleado
     private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {
         String cedula = JOptionPane.showInputDialog(null, "Ingrese la cedula del empleado", "Buscar empleado", JOptionPane.QUESTION_MESSAGE);
-        if (cedula != null && cedula.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar la cedula del empleado", "Error", JOptionPane.ERROR_MESSAGE);
+        if (cedula == null) {
+            return;
         }
 
         if (cedula != null && cedula.isBlank()) {
-            try {
-                empleadoEntity = empleadoController.obtenerEmpleado(cedula);
-                txtIdEmpleado.setText(empleadoEntity.getCedula());
-                txtNombre.setText(empleadoEntity.getNombre());
-                comboBoxCargo.setSelectedItem(empleadoEntity.getCargo().getDescripcion());
-                txtHabilidades.setText(empleadoEntity.getHabilidades());
+            JOptionPane.showMessageDialog(null, "Debe ingresar la cedula del empleado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-                JOptionPane.showMessageDialog(null, "Empleado encontrado", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        try {
+            empleadoEntity = empleadoController.obtenerEmpleado(cedula);
+            txtIdEmpleado.setText(empleadoEntity.getCedula());
+            txtNombre.setText(empleadoEntity.getNombre());
+            for (int i = 0; i < comboBoxCargo.getItemCount(); i++) {
+                if (comboBoxCargo.getItemAt(i).equals(empleadoEntity.getCargo().getDescripcion())) {
+                    comboBoxCargo.setSelectedIndex(i);
+                    break;
+                }
             }
+            txtHabilidades.setText(empleadoEntity.getHabilidades());
+
+            JOptionPane.showMessageDialog(null, "Empleado encontrado", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
