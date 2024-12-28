@@ -1,4 +1,4 @@
-
+//TODO: ¿Aqui va un package de tallermecanico.view.components?
 package tallermecanico.view;
 
 import javax.swing.*;
@@ -47,6 +47,7 @@ public class ProductoView extends javax.swing.JFrame {
         btnBorrar1 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
+        btnIrStock = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblImage = new javax.swing.JLabel();
 
@@ -92,6 +93,8 @@ public class ProductoView extends javax.swing.JFrame {
         });
         jPanel2.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 130, -1));
 
+        btnIrProveedor.setBackground(new java.awt.Color(26, 41, 74));
+        btnIrProveedor.setForeground(new java.awt.Color(204, 204, 204));
         btnIrProveedor.setText("...");
         btnIrProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +102,12 @@ public class ProductoView extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnIrProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 23, -1));
+
+        txtIdProveedor1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdProveedor1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtIdProveedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 100, -1));
 
         jLabel9.setText("Id Producto");
@@ -142,6 +151,16 @@ public class ProductoView extends javax.swing.JFrame {
         jLabel14.setText("Stock");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 78, -1));
         jPanel2.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 130, -1));
+
+        btnIrStock.setBackground(new java.awt.Color(26, 41, 74));
+        btnIrStock.setForeground(new java.awt.Color(204, 204, 204));
+        btnIrStock.setText("jButton1");
+        btnIrStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIrStockActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnIrStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 20, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(298, 0, 383, 444));
 
@@ -190,6 +209,15 @@ public class ProductoView extends javax.swing.JFrame {
         ProveedorView proveedorView = new ProveedorView();
         proveedorView.setVisible(true);
     }//GEN-LAST:event_btnIrProveedorActionPerformed
+
+    private void txtIdProveedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProveedor1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdProveedor1ActionPerformed
+
+    private void btnIrStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrStockActionPerformed
+        //ListarProductos productos = new ListarProductos();
+        //productos.setVisible(true);
+    }//GEN-LAST:event_btnIrStockActionPerformed
 
     private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         String idProducto = txtIdProducto.getText();
@@ -289,6 +317,7 @@ public class ProductoView extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnIrProveedor;
+    private javax.swing.JButton btnIrStock;
     private javax.swing.JButton btnNuevo1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
