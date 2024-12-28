@@ -1,18 +1,30 @@
 
 package tallermecanico.view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
+import tallermecanico.controller.OrdenController;
+import tallermecanico.entities.FacturaEntity;
+import tallermecanico.entities.OrdenEntity;
 import tallermecanico.view.components.ImageSize;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class FacturaView extends javax.swing.JFrame {
 
     private ImageSize image = new ImageSize();
+    private final OrdenController ordenController = new OrdenController();
+    FacturaEntity facturaEntity = new FacturaEntity();
     
     public FacturaView() {
         initComponents();
         setTitle("Factura");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
+        txtFechaEmision.setEnabled(false);
+        txtCliente.setEnabled(false);
+        txtTotal.setEnabled(false);
         setLocationRelativeTo(null);
         this.image.setSize(lblImage, "src/main/resources/factura.png");
     }
@@ -30,9 +42,6 @@ public class FacturaView extends javax.swing.JFrame {
         lblImage = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtNroFactura = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtCliente = new javax.swing.JTextPane();
@@ -45,12 +54,12 @@ public class FacturaView extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         txtOrden = new javax.swing.JTextPane();
         jLabel6 = new javax.swing.JLabel();
-        btnVerDetalle = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnVerCliente = new javax.swing.JButton();
         btnVerOrden = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -92,54 +101,38 @@ public class FacturaView extends javax.swing.JFrame {
         jLabel1.setText("Factura");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 80, 40));
 
-        jLabel2.setText("Nro Factura");
-        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
-
-        jScrollPane1.setViewportView(txtNroFactura);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 160, -1));
-
         jLabel3.setText("Fecha Emision");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
         jScrollPane2.setViewportView(txtCliente);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 120, -1));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 120, -1));
 
-        jLabel4.setText("Nro Cliente");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
+        jLabel4.setText("Cedula Cliente");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
         jScrollPane3.setViewportView(txtFechaEmision);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 160, -1));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 130, -1));
 
         jLabel5.setText("Total");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, -1));
 
         jScrollPane4.setViewportView(txtTotal);
 
-        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 160, -1));
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 130, -1));
 
-        jScrollPane5.setViewportView(txtOrden);
-
-        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 120, -1));
-
-        jLabel6.setText("Nro Orden");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
-
-        btnVerDetalle.setBackground(new java.awt.Color(26, 41, 74));
-        btnVerDetalle.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        btnVerDetalle.setForeground(new java.awt.Color(204, 204, 204));
-        btnVerDetalle.setText("Ver Detalles Facturas");
-        btnVerDetalle.setBorder(null);
-        btnVerDetalle.setBorderPainted(false);
-        btnVerDetalle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVerDetalle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerDetalleActionPerformed(evt);
+        txtOrden.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtOrdenFocusLost(evt);
             }
         });
-        jPanel3.add(btnVerDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 290, 30));
+        jScrollPane5.setViewportView(txtOrden);
+
+        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 120, -1));
+
+        jLabel6.setText("Nro Orden");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
         btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -153,7 +146,7 @@ public class FacturaView extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 90, 30));
+        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 90, 30));
 
         btnEditar.setBackground(new java.awt.Color(26, 41, 74));
         btnEditar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -167,7 +160,7 @@ public class FacturaView extends javax.swing.JFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 90, 30));
+        jPanel3.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 90, 30));
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -181,7 +174,7 @@ public class FacturaView extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 90, 30));
+        jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 90, 30));
 
         btnVerCliente.setBackground(new java.awt.Color(26, 41, 74));
         btnVerCliente.setForeground(new java.awt.Color(204, 204, 204));
@@ -193,7 +186,7 @@ public class FacturaView extends javax.swing.JFrame {
                 btnVerClienteActionPerformed(evt);
             }
         });
-        jPanel3.add(btnVerCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 30, -1));
+        jPanel3.add(btnVerCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 30, -1));
 
         btnVerOrden.setBackground(new java.awt.Color(26, 41, 74));
         btnVerOrden.setForeground(new java.awt.Color(204, 204, 204));
@@ -205,7 +198,13 @@ public class FacturaView extends javax.swing.JFrame {
                 btnVerOrdenActionPerformed(evt);
             }
         });
-        jPanel3.add(btnVerOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 30, -1));
+        jPanel3.add(btnVerOrden, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 30, -1));
+
+        jButton1.setBackground(new java.awt.Color(26, 41, 74));
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(204, 204, 204));
+        jButton1.setText("Completar Factura");
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 290, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 430, 410));
 
@@ -223,43 +222,84 @@ public class FacturaView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    private void txtOrdenFocusLost(java.awt.event.FocusEvent evt) {                                   
+        this.autoCompletarCampos();
+    }
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        this.limpiarCampos();
+        LocalDate fecha = LocalDate.now();
+        txtFechaEmision.setText(fecha.toString());
+    }
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }
 
-    private void btnVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDetalleActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        String fechaEmision = txtFechaEmision.getText();
+        String orden = txtOrden.getText();
+
+        if (fechaEmision.isEmpty() || orden.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            OrdenEntity ordenEntity = ordenController.obtenerOrden(orden);
+            facturaEntity = new FacturaEntity();
+            facturaEntity.setFechaEmision(LocalDate.parse(fechaEmision));
+            facturaEntity.setCliente(ordenEntity.getCliente());
+            facturaEntity.setOrden(ordenEntity);
+            facturaEntity.setTotal(ordenEntity.getCostoTotal());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar la factura", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void btnVerDetalleActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerDetalleActionPerformed
+    }
 
-    private void btnVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClienteActionPerformed
+    private void btnVerClienteActionPerformed(java.awt.event.ActionEvent evt) {                                              
         ClienteView clienteView = new ClienteView();
         clienteView.setVisible(true);
-    }//GEN-LAST:event_btnVerClienteActionPerformed
+    }
 
-    private void btnVerOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerOrdenActionPerformed
+    private void btnVerOrdenActionPerformed(java.awt.event.ActionEvent evt) {                                            
         OrdenView ordenView = new OrdenView();
         ordenView.setVisible(true);
-    }//GEN-LAST:event_btnVerOrdenActionPerformed
+    }
 
+    private void limpiarCampos() {
+        txtCliente.setText("");
+        txtFechaEmision.setText("");
+        txtTotal.setText("");
+        txtOrden.setText("");
+    }
 
+    private void autoCompletarCampos() {
+        try {
+            OrdenEntity ordenEntity = ordenController.obtenerOrden(txtOrden.getText());
+            LocalDate fecha = LocalDate.now();
+            txtCliente.setText(ordenEntity.getCliente().getCedula());
+            txtTotal.setText(ordenEntity.getCostoTotal().toString());
+            txtFechaEmision.setText(fecha.toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnVerCliente;
-    private javax.swing.JButton btnVerDetalle;
     private javax.swing.JButton btnVerOrden;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -270,7 +310,6 @@ public class FacturaView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -278,7 +317,6 @@ public class FacturaView extends javax.swing.JFrame {
     private javax.swing.JLabel lblImage;
     private javax.swing.JTextPane txtCliente;
     private javax.swing.JTextPane txtFechaEmision;
-    private javax.swing.JTextPane txtNroFactura;
     private javax.swing.JTextPane txtOrden;
     private javax.swing.JTextPane txtTotal;
     // End of variables declaration//GEN-END:variables
