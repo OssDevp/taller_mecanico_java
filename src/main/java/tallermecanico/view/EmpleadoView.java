@@ -92,7 +92,8 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 135, 50));
 
         btnGuardar.setBackground(new java.awt.Color(26, 41, 74));
-        btnGuardar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(206, 206, 206));
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
@@ -105,7 +106,8 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 80, 30));
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
-        btnBorrar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(206, 206, 206));
         btnBorrar.setText("Borrar");
         btnBorrar.setBorder(null);
         btnBorrar.setBorderPainted(false);
@@ -118,7 +120,8 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 80, 30));
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
-        btnNuevo.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(206, 206, 206));
         btnNuevo.setText("Nuevo");
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
@@ -131,7 +134,8 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 80, 30));
 
         btnListar.setBackground(new java.awt.Color(26, 41, 74));
-        btnListar.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnListar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnListar.setForeground(new java.awt.Color(206, 206, 206));
         btnListar.setText("Listar Empleados");
         btnListar.setBorder(null);
         btnListar.setBorderPainted(false);
@@ -144,7 +148,8 @@ public class EmpleadoView extends javax.swing.JFrame {
         jPanel3.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 190, 30));
 
         btnBuscar1.setBackground(new java.awt.Color(26, 41, 74));
-        btnBuscar1.setFont(new java.awt.Font("DialogInput", 1, 15)); // NOI18N
+        btnBuscar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnBuscar1.setForeground(new java.awt.Color(206, 206, 206));
         btnBuscar1.setText("Buscar");
         btnBuscar1.setBorder(null);
         btnBuscar1.setBorderPainted(false);
