@@ -252,7 +252,7 @@ public class FacturaView extends javax.swing.JFrame {
             facturaEntity.setCliente(ordenEntity.getCliente());
             facturaEntity.setOrden(ordenEntity);
             facturaEntity.setTotal(ordenEntity.getCostoTotal());
-
+            JOptionPane.showMessageDialog(null, "Factura Registrada", "Exito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al guardar la factura", "Error", JOptionPane.ERROR_MESSAGE);
         }
