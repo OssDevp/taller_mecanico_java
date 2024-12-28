@@ -66,7 +66,7 @@ public class ProductoView extends javax.swing.JFrame {
                 btnNuevo1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 90, 30));
+        jPanel2.add(btnNuevo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 110, 30));
 
         jLabel8.setText("Id Proveedor");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
@@ -80,7 +80,7 @@ public class ProductoView extends javax.swing.JFrame {
                 btnBuscar1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 90, 30));
+        jPanel2.add(btnBuscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 110, 30));
         jPanel2.add(txtIdProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 130, -1));
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 130, -1));
         jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 130, -1));
@@ -123,7 +123,7 @@ public class ProductoView extends javax.swing.JFrame {
                 btnGuardar1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 90, 30));
+        jPanel2.add(btnGuardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 110, 30));
 
         jLabel13.setText("Precio Unitario");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
@@ -137,7 +137,7 @@ public class ProductoView extends javax.swing.JFrame {
                 btnBorrar1ActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBorrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 90, 30));
+        jPanel2.add(btnBorrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 110, 30));
 
         jLabel14.setText("Stock");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 78, -1));
@@ -191,7 +191,7 @@ public class ProductoView extends javax.swing.JFrame {
         proveedorView.setVisible(true);
     }//GEN-LAST:event_btnIrProveedorActionPerformed
 
-    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         String idProducto = txtIdProducto.getText();
         String nombre = txtNombre.getText();
         String descripcion = txtDescripcion.getText();
@@ -227,7 +227,7 @@ public class ProductoView extends javax.swing.JFrame {
         }
     }
 
-    private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevo1ActionPerformed
+    private void btnNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.limpiarCampos();
     }
 
@@ -254,7 +254,7 @@ public class ProductoView extends javax.swing.JFrame {
         }
     }
 
-    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar1ActionPerformed
+    private void btnBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         String id = JOptionPane.showInputDialog(null, "Ingrese su ID:", "Buscar Producto", JOptionPane.QUESTION_MESSAGE);
 
         if (id != null && id.isBlank()) {
