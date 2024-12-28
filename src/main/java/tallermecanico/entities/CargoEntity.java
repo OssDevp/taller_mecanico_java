@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,7 +24,7 @@ public class CargoEntity {
     @Column(name = "sueldo", precision = 10, scale = 2)
     private BigDecimal sueldo;
 
-    @OneToMany(mappedBy = "cargo", cascade = CascadeType.ALL) // Cambiado "idCargo" a "cargo"
-    private Set<EmpleadoEntity> empleados = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "cargo")
+    private List<EmpleadoEntity> empleados = new ArrayList<>();
 
 }

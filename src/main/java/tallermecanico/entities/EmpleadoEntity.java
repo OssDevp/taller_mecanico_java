@@ -3,8 +3,9 @@ package tallermecanico.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,7 +29,7 @@ public class EmpleadoEntity {
     private String habilidades;
 
     @OneToMany(mappedBy = "idEmpleado")
-    private Set<OrdenEntity> ordenes = new LinkedHashSet<>();
+    private List<OrdenEntity> ordenes = new ArrayList<>();
 
     @Column(name = "cedula", nullable = false, length = 45)
     private String cedula;

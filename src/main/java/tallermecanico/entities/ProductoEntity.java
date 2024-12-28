@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,9 +33,9 @@ public class ProductoEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_proveedor")
-    private ProveedorEntity idProveedor;
+    private ProveedorEntity proveedor;
 
     @OneToMany(mappedBy = "idProducto")
-    private Set<DetalleFacturaEntity> detalleFacturas = new LinkedHashSet<>();
+    private List<DetalleFacturaEntity> detalleFacturas = new ArrayList<>();
 
 }
