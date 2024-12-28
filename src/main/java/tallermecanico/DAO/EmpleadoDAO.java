@@ -10,21 +10,13 @@ import tallermecanico.entities.EmpleadoEntity;
 import java.util.List;
 
 public class EmpleadoDAO {
-    // LISTAR TODOS
-//    public List<EmpleadoEntity> obtenerTodos() {
-//        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-//            return session.createQuery("FROM EmpleadoEntity ", EmpleadoEntity.class).list();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 
+    // OBTENER TODOS
     public List<EmpleadoEntity> obtenerTodos() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             List<EmpleadoEntity> empleados = session.createQuery("FROM EmpleadoEntity", EmpleadoEntity.class).list();
             for (EmpleadoEntity empleado : empleados) {
-                Hibernate.initialize(empleado.getCargo()); // Forzar la carga del cargo
+                Hibernate.initialize(empleado.getCargo());
             }
             return empleados;
         } catch (Exception e) {
