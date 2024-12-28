@@ -212,11 +212,12 @@ public class ProductoView extends javax.swing.JFrame {
             return;
         }
         try {
+            precioDecimal = new BigDecimal(precio);
             ProductoEntity producto = new ProductoEntity();
-//                producto.setNombre(nombre);
-//                producto.setDescripcion(descripcion);
-//                producto.setPrecioUnitario(precioDecimal);
-//                producto.setIdProveedor(idProveedor);
+            producto.setNombre(nombre);
+            producto.setDescripcion(descripcion);
+            producto.setPrecioUnitario(precioDecimal);
+            //producto.setIdProveedor(idProveedor);
             productoController.registrarProducto(producto);
 
             JOptionPane.showMessageDialog(null, "Dato Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);

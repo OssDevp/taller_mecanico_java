@@ -19,7 +19,7 @@ public class OrdenController {
         }
     }
 
-    public List<OrdenEntity> obtenerOrden() {
+    public List<OrdenEntity> obtenerOrdenes() {
         ordenDAO = new OrdenDAO();
         try {
             return ordenDAO.obtenerTodos();

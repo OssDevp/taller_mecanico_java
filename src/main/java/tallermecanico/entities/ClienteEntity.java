@@ -33,10 +33,10 @@ public class ClienteEntity {
     @Column(name = "cedula", nullable = false, length = 45)
     private String cedula;
 
-    @OneToMany(mappedBy = "idCliente")
+    @OneToMany(mappedBy = "idCliente", cascade = CascadeType.ALL)
     private Set<FacturaEntity> facturas = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idCliente")
+    @OneToMany(mappedBy = "idCliente", cascade = CascadeType.ALL)
     private Set<OrdenEntity> ordenes = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)

@@ -1,20 +1,42 @@
 
 package tallermecanico.view;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
+import tallermecanico.controller.*;
+import tallermecanico.entities.*;
 import tallermecanico.view.components.ImageSize;
+import tallermecanico.view.components.ListarOrdenes;
+
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 public class OrdenView extends javax.swing.JFrame {
-    
+
+    private final ClienteController clienteController;
+    private final VehiculoController vehiculoController;
+    private final EmpleadoController empleadoController;
+    private final ServicioController servicioController;
+    private final OrdenController ordenController = new OrdenController();
+    private BigDecimal costoDecimal;
     private ImageSize image = new ImageSize();
     
     public OrdenView() {
         initComponents();
         setTitle("Registrar Orden");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        clienteController = new ClienteController();
+        vehiculoController = new VehiculoController();
+        empleadoController = new EmpleadoController();
+        servicioController = new ServicioController();
         setResizable(false);
         setLocationRelativeTo(null);
+        addPlaceholder(txtFechaIngreso, "aaaa/mm/dd");
+        addPlaceholder(txtFechaFinal, "aaaa/mm/dd");
         image.setSize(lblImage, "src/main/resources/orden.png");
    }
 
@@ -49,7 +71,8 @@ public class OrdenView extends javax.swing.JFrame {
         btnIrVehiculo = new javax.swing.JButton();
         btnIrEmpleado = new javax.swing.JButton();
         jComboBox2 = new javax.swing.JComboBox<>();
-        btnEditar = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
+        btnEditar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -93,7 +116,7 @@ public class OrdenView extends javax.swing.JFrame {
         jPanel1.add(txtIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 130, -1));
         jPanel1.add(txtidVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 130, -1));
         jPanel1.add(txtIdEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 130, -1));
-        jPanel1.add(txtIdServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 171, -1));
+        jPanel1.add(txtIdServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 130, -1));
         jPanel1.add(txtCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 171, -1));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -113,7 +136,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 80, 30));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 80, 30));
 
         btnNuevo.setBackground(new java.awt.Color(26, 41, 74));
         btnNuevo.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -128,7 +151,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 80, 30));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 80, 30));
 
         btnBorrar.setBackground(new java.awt.Color(26, 41, 74));
         btnBorrar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -144,7 +167,7 @@ public class OrdenView extends javax.swing.JFrame {
                 btnBorrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 80, 30));
+        jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 80, 30));
 
         btnIrCliente.setBackground(new java.awt.Color(26, 41, 74));
         btnIrCliente.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
@@ -189,23 +212,39 @@ public class OrdenView extends javax.swing.JFrame {
         jComboBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, -1));
 
-        btnEditar.setBackground(new java.awt.Color(26, 41, 74));
-        btnEditar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(204, 204, 204));
-        btnEditar.setText("Editar");
-        btnEditar.setToolTipText("");
-        btnEditar.setBorder(null);
-        btnEditar.setBorderPainted(false);
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEditar.setFocusPainted(false);
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnListar.setBackground(new java.awt.Color(26, 41, 74));
+        btnListar.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnListar.setForeground(new java.awt.Color(204, 204, 204));
+        btnListar.setText("Listar");
+        btnListar.setToolTipText("");
+        btnListar.setBorder(null);
+        btnListar.setBorderPainted(false);
+        btnListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnListar.setFocusPainted(false);
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnListarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 80, 30));
+        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 80, 30));
 
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 0, 440, 427));
+        btnEditar1.setBackground(new java.awt.Color(26, 41, 74));
+        btnEditar1.setFont(new java.awt.Font("Dialog", 1, 15)); // NOI18N
+        btnEditar1.setForeground(new java.awt.Color(204, 204, 204));
+        btnEditar1.setText("Editar");
+        btnEditar1.setToolTipText("");
+        btnEditar1.setBorder(null);
+        btnEditar1.setBorderPainted(false);
+        btnEditar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar1.setFocusPainted(false);
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEditar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 80, 30));
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 440, 427));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,9 +260,47 @@ public class OrdenView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+
+        String fechaIngreso = txtFechaIngreso.getText();
+        String fechaFinal = txtFechaFinal.getText();
+        String cliente = txtIdCliente.getText();
+        String vehiculo = txtidVehiculo.getText();
+        String empleado = txtIdEmpleado.getText();
+        String costoTotal = txtCostoTotal.getText();
+
+        String servicio = txtIdServicio.getText();
+        String estado = jComboBox2.getSelectedItem().toString();
+
+        if (fechaIngreso.isEmpty() || fechaFinal.isEmpty() || cliente.isEmpty() || vehiculo.isEmpty() || empleado.isEmpty() || servicio.isEmpty() || costoTotal.isEmpty() || estado.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Los campos no deben estar vacios", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        try {
+            BigDecimal costoDecimal = new BigDecimal(txtCostoTotal.getText());
+            OrdenEntity orden = new OrdenEntity();
+            OrdenController ordenController = new OrdenController();
+            ClienteEntity clienteEntity = clienteController.obtenerCliente(cliente);
+            VehiculoEntity vehiculoEntity = vehiculoController.obtenerVehiculo(vehiculo);
+            EmpleadoEntity empleadoEntity = empleadoController.obtenerEmpleado(empleado);
+            ServicioEntity servicioEntity = servicioController.obtenerServicio(servicio);
+            orden.setFechaIngreso(LocalDate.parse(fechaIngreso));
+            orden.setFechaFinalizacion(LocalDate.parse(fechaFinal));
+            orden.setIdCliente(clienteEntity);
+            orden.setIdVehiculo(vehiculoEntity);
+            orden.setIdEmpleado(empleadoEntity);
+            orden.setIdServicio(servicioEntity);
+            orden.setCostoTotal(costoDecimal);
+            orden.setEstado(estado);
+
+            ordenController.registrarOrden(orden);
+            JOptionPane.showMessageDialog(null, "Orden registrada correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            this.limpiarCampos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void btnIrClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIrClienteActionPerformed
         ClienteView cliente = new ClienteView();
@@ -240,26 +317,84 @@ public class OrdenView extends javax.swing.JFrame {
         empleadoView.setVisible(true);
     }//GEN-LAST:event_btnIrEmpleadoActionPerformed
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoActionPerformed
+    }//GEN-LAST:event_btnEditar1ActionPerformed
 
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBorrarActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        this.limpiarCampos();
+    }
+    
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {
+        ListarOrdenes listarOrdenes = new ListarOrdenes();
+        listarOrdenes.setVisible(true);
+    }
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        String id = JOptionPane.showInputDialog(null, "Ingrese el id:", "Eliminar Orden", JOptionPane.QUESTION_MESSAGE);
 
+        if (id != null && id.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        if(id != null) {
+
+            var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar la orden?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (confirmacion == JOptionPane.NO_OPTION) {
+                return;
+            }
+
+            try {
+                ordenController.eliminarOrden(id);
+                JOptionPane.showMessageDialog(null, "Orden Eliminada", "Eliminacion", JOptionPane.INFORMATION_MESSAGE);
+                this.limpiarCampos();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void limpiarCampos() {
+        txtFechaIngreso.setText("");
+        txtFechaFinal.setText("");
+        txtIdCliente.setText("");
+        txtidVehiculo.setText("");
+        txtIdEmpleado.setText("");
+        txtIdServicio.setText("");
+        txtCostoTotal.setText("");
+    }
+
+    private void addPlaceholder(JTextField textField, String placeholder) {
+        textField.setForeground(Color.GRAY);
+        textField.setText(placeholder);
+
+        textField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(placeholder)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setForeground(Color.GRAY);
+                    textField.setText(placeholder);
+                }
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEditar1;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnIrCliente;
     private javax.swing.JButton btnIrEmpleado;
     private javax.swing.JButton btnIrVehiculo;
+    private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel10;
