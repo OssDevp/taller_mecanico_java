@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import tallermecanico.controller.CargoController;
 import tallermecanico.entities.CargoEntity;
 import tallermecanico.view.components.ImageSize;
+import tallermecanico.view.components.ListarCargos;
 
 import java.math.BigDecimal;
 
@@ -227,7 +228,8 @@ public class CargoView extends javax.swing.JFrame {
     }
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        ListarCargos listarCargos = new ListarCargos();
+        listarCargos.setVisible(true);
     }
 
 private void limpiarCampos() {
