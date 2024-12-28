@@ -184,6 +184,7 @@ public class FacturaView extends javax.swing.JFrame {
         jPanel3.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 90, 30));
 
         btnVerCliente.setBackground(new java.awt.Color(26, 41, 74));
+        btnVerCliente.setForeground(new java.awt.Color(204, 204, 204));
         btnVerCliente.setText("...");
         btnVerCliente.setBorderPainted(false);
         btnVerCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -195,6 +196,7 @@ public class FacturaView extends javax.swing.JFrame {
         jPanel3.add(btnVerCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 30, -1));
 
         btnVerOrden.setBackground(new java.awt.Color(26, 41, 74));
+        btnVerOrden.setForeground(new java.awt.Color(204, 204, 204));
         btnVerOrden.setText("...");
         btnVerOrden.setBorderPainted(false);
         btnVerOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
