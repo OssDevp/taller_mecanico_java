@@ -19,7 +19,7 @@ public class ServicioDAO {
     }
 
     // OBTENER POR ID
-    public ServicioEntity obtenerPorId(Long id) {
+    public ServicioEntity obtenerPorId(Integer id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(ServicioEntity.class, id);
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class ServicioDAO {
     }
 
     // ELIMINAR POR ID
-    public void eliminar(Long id) {
+    public void eliminar(Integer id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();

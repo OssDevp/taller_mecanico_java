@@ -175,7 +175,7 @@ public class ServicioView extends javax.swing.JFrame {
             return;
         }
         try {
-             costoDecimal = new BigDecimal(costo);
+            costoDecimal = new BigDecimal(costo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "El costo debe ser un numero", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -186,7 +186,7 @@ public class ServicioView extends javax.swing.JFrame {
             servicioEntity.setDescripcion(descripcion);
             servicioEntity.setCosto(costoDecimal);
 
-            servicioController.registrarServicio(servicioEntity);
+            servicioController.guardarServicio(servicioEntity);
 
             JOptionPane.showMessageDialog(null, "Dato Registrado", "Registro", JOptionPane.INFORMATION_MESSAGE);
             this.limpiarCampos();
@@ -203,7 +203,7 @@ public class ServicioView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        if(id != null) {
+        if (id != null) {
 
             var confirmacion = JOptionPane.showConfirmDialog(null, "¿Estas seguro de eliminar el servicio?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (confirmacion == JOptionPane.NO_OPTION) {
@@ -226,31 +226,23 @@ public class ServicioView extends javax.swing.JFrame {
     }
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {
-        if (txtIdServicio.getText().isBlank() || txtNombre.getText().isBlank() || txtDescripcion.getText().isBlank() || txtCosto.getText().isBlank()) {
-            String id = JOptionPane.showInputDialog(null, "Ingrese el ID:", "Buscar Servicio", JOptionPane.QUESTION_MESSAGE);
+        String id = JOptionPane.showInputDialog(null, "Ingrese el ID:", "Buscar Servicio", JOptionPane.QUESTION_MESSAGE);
 
-            if (id != null && id.isBlank()) {
-                JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-            if(id != null && id.length() > 5) {
-                try {
-                    servicioEntity = servicioController.obtenerServicio(id);
-                    txtIdServicio.setText(String.valueOf(servicioEntity.getId()));
-                    txtNombre.setText(servicioEntity.getNombre());
-                    txtDescripcion.setText(servicioEntity.getDescripcion());
-                    txtCosto.setText(String.valueOf(servicioEntity.getCosto()));
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        } else {
-//           String nombre = txtNombre.getText();
-//              String descripcion = txtDescripcion.getText();
-//                BigDecimal costo = new BigDecimal(txtCosto.getText());
-//                servicioEntity.setNombre(nombre);
+        if (id != null && id.isBlank()) {
+            JOptionPane.showMessageDialog(null, "El campo no debe estar vacio", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         }
 
+        if (id != null) {
+            try {
+                servicioEntity = servicioController.obtenerServicio(id);
+                txtIdServicio.setText(String.valueOf(servicioEntity.getId()));
+                txtNombre.setText(servicioEntity.getNombre());
+                txtDescripcion.setText(servicioEntity.getDescripcion());
+                txtCosto.setText(String.valueOf(servicioEntity.getCosto()));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }
 
     private void limpiarCampos() {
